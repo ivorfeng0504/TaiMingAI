@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.WebApi", "TaiMingAI.WebApi\TaiMingAI.WebApi.csproj", "{06E563B4-B96F-428D-A102-C4ADACA37000}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.Tools", "TaiMingAI.Tools\TaiMingAI.Tools.csproj", "{32101BA4-818D-4A50-900B-AEFD4ECB0441}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.Redis", "TaiMingAI.Redis\TaiMingAI.Redis.csproj", "{624A5002-406A-4E33-9380-0752695A2E7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{06E563B4-B96F-428D-A102-C4ADACA37000}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06E563B4-B96F-428D-A102-C4ADACA37000}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06E563B4-B96F-428D-A102-C4ADACA37000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32101BA4-818D-4A50-900B-AEFD4ECB0441}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32101BA4-818D-4A50-900B-AEFD4ECB0441}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32101BA4-818D-4A50-900B-AEFD4ECB0441}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32101BA4-818D-4A50-900B-AEFD4ECB0441}.Release|Any CPU.Build.0 = Release|Any CPU
+		{624A5002-406A-4E33-9380-0752695A2E7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{624A5002-406A-4E33-9380-0752695A2E7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{624A5002-406A-4E33-9380-0752695A2E7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{624A5002-406A-4E33-9380-0752695A2E7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
