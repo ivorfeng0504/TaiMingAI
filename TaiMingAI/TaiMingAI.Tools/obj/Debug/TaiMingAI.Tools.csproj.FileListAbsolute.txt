@@ -1,0 +1,6 @@
+E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.Tools\bin\Debug\TaiMingAI.Tools.dll
+E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.Tools\bin\Debug\TaiMingAI.Tools.pdb
+E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.Tools\obj\Debug\TaiMingAI.Tools.csprojResolveAssemblyReference.cache
+E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.Tools\obj\Debug\TaiMingAI.Tools.csproj.CoreCompileInputs.cache
+E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.Tools\obj\Debug\TaiMingAI.Tools.dll
+E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.Tools\obj\Debug\TaiMingAI.Tools.pdb

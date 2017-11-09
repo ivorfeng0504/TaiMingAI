@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaiMingAI.Redis
+namespace TaiMingAI.Caches
 {
     public class Class1
     {

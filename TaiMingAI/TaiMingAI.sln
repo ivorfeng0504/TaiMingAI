@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.WebApi", "TaiMing
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.Tools", "TaiMingAI.Tools\TaiMingAI.Tools.csproj", "{32101BA4-818D-4A50-900B-AEFD4ECB0441}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.Redis", "TaiMingAI.Redis\TaiMingAI.Redis.csproj", "{624A5002-406A-4E33-9380-0752695A2E7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.Caches", "TaiMingAI.Caches\TaiMingAI.Caches.csproj", "{624A5002-406A-4E33-9380-0752695A2E7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -7,8 +7,8 @@
     <ProjectGuid>{624A5002-406A-4E33-9380-0752695A2E7C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TaiMingAI.Redis</RootNamespace>
-    <AssemblyName>TaiMingAI.Redis</AssemblyName>
+    <RootNamespace>TaiMingAI.Caches</RootNamespace>
+    <AssemblyName>TaiMingAI.Caches</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -60,10 +60,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RedisDLL\ServiceStack.Common.dll" />
-    <Content Include="RedisDLL\ServiceStack.Interfaces.dll" />
-    <Content Include="RedisDLL\ServiceStack.Redis.dll" />
-    <Content Include="RedisDLL\ServiceStack.Text.dll" />
+    <Content Include="Redis\dll\ServiceStack.Common.dll" />
+    <Content Include="Redis\dll\ServiceStack.Interfaces.dll" />
+    <Content Include="Redis\dll\ServiceStack.Redis.dll" />
+    <Content Include="Redis\dll\ServiceStack.Text.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
