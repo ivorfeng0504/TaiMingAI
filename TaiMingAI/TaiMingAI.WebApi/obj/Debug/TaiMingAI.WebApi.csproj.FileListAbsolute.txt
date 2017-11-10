@@ -82,3 +82,5 @@ E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\obj\Debug\TaiMingAI.WebApi.c
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\obj\Debug\TaiMingAI.WebApi.csproj.CoreCompileInputs.cache
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\obj\Debug\TaiMingAI.WebApi.dll
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\obj\Debug\TaiMingAI.WebApi.pdb
+E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\TaiMingAI.Tools.dll
+E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\TaiMingAI.Tools.pdb

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TaiMingAI.Tools
+namespace TaiMingAI.Caches.Redis
 {
-    public class Class1
+    public class RedisHelper
     {
+
     }
 }

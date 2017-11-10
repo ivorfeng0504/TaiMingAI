@@ -2,13 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Xml.Serialization;
 
 namespace TaiMingAI.WebApi.Models
 {
-    public class UserInfoApiGet
+    [XmlType("Data")]
+    public class Data
     {
-        public int Id;
-        public string Name;
-        public int Age;
+        [XmlAttribute("userId")]
+        public int UserId { get; set; }
+        [XmlAttribute("addTime")]
+        public DateTime AddTime { get; set; }
+        [XmlArray("Persons")]
+        public Person[] PersonList { get; set; }
+    }
+    [XmlType("Person")]
+    public class Person
+    {
+        [XmlAttribute("id")]
+        public int Id { get; set; }
+        [XmlElement]
+        public string Name { get; set; }
+        [XmlElement]
+        public int Age { get; set; }
     }
 }
