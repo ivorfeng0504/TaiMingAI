@@ -47,6 +47,7 @@
       <HintPath>RedisDLL\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -58,13 +59,25 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Redis\RedisConfig.cs" />
+    <Compile Include="Redis\RedisHash.cs" />
     <Compile Include="Redis\RedisHelper.cs" />
+    <Compile Include="Redis\RedisList.cs" />
+    <Compile Include="Redis\RedisSet.cs" />
+    <Compile Include="Redis\RedisSortedSet.cs" />
+    <Compile Include="Redis\RedisString.cs" />
+    <Compile Include="Redis\ReidsManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Redis\dll\ServiceStack.Client.dll" />
     <Content Include="Redis\dll\ServiceStack.Common.dll" />
+    <Content Include="Redis\dll\ServiceStack.Common.xml" />
     <Content Include="Redis\dll\ServiceStack.Interfaces.dll" />
+    <Content Include="Redis\dll\ServiceStack.Interfaces.xml" />
     <Content Include="Redis\dll\ServiceStack.Redis.dll" />
+    <Content Include="Redis\dll\ServiceStack.Redis.XML" />
     <Content Include="Redis\dll\ServiceStack.Text.dll" />
+    <Content Include="Redis\dll\ServiceStack.Text.XML" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

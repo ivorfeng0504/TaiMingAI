@@ -8,8 +8,8 @@ namespace TaiMingAI.Tools.Xml
 {
     public class XmlHelper
     {
-        private string _xmlPath;
-        public XmlDocument Doc = null;
+        private readonly string _xmlPath;
+        public XmlDocument Doc;
         /// <summary>
         /// xml文件路径
         /// </summary>
@@ -112,7 +112,7 @@ namespace TaiMingAI.Tools.Xml
                     return ret;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return default(T);
             }
@@ -134,7 +134,10 @@ namespace TaiMingAI.Tools.Xml
                     xs.Serialize(writer, obj);
                 }
             }
-            catch (Exception) { }
+            catch (Exception)
+            {
+                // ignored
+            }
         }
     }
     /// <summary>
