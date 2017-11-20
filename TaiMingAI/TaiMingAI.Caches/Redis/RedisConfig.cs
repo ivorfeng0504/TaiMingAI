@@ -12,7 +12,8 @@ namespace TaiMingAI.Caches.Redis
 
         public static RedisConfig GetConfig(string sectionName)
         {
-            RedisConfig section = (RedisConfig)ConfigurationManager.GetSection(sectionName);
+            
+            RedisConfig section = ConfigurationManager.GetSection(sectionName) as RedisConfig; ;
             if (section == null)
                 throw new ConfigurationErrorsException("Section " + sectionName + " is not found.");
             return section;
@@ -53,7 +54,7 @@ namespace TaiMingAI.Caches.Redis
         /// <summary>
         /// 最大写链接数
         /// </summary>
-        [ConfigurationProperty("MaxWritePoolSize", IsRequired = false, DefaultValue = 5)]
+        [ConfigurationProperty("MaxWritePoolSize", IsRequired = false, DefaultValue = 250)]
         public int MaxWritePoolSize
         {
             get
@@ -70,7 +71,7 @@ namespace TaiMingAI.Caches.Redis
         /// <summary>
         /// 最大读链接数
         /// </summary>
-        [ConfigurationProperty("MaxReadPoolSize", IsRequired = false, DefaultValue = 5)]
+        [ConfigurationProperty("MaxReadPoolSize", IsRequired = false, DefaultValue = 250)]
         public int MaxReadPoolSize
         {
             get
@@ -101,7 +102,7 @@ namespace TaiMingAI.Caches.Redis
         }
 
         /// <summary>
-        /// 本地缓存到期时间，单位:秒
+        /// 本地缓存到期时间，单位:秒,默认10小时
         /// </summary>
         [ConfigurationProperty("LocalCacheTime", IsRequired = false, DefaultValue = 36000)]
         public int LocalCacheTime

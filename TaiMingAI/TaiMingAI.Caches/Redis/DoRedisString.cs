@@ -1,19 +1,40 @@
-﻿using System;
+﻿using ServiceStack.Redis;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TaiMingAI.Caches.Redis
 {
-    public class RedisString : RedisHelper
+    /// <summary>
+    /// 字符串
+    /// </summary>
+    public class DoRedisString : RedisHelper
     {
+        private static DoRedisString doRedis;
+        private DoRedisString() { }
+        public static DoRedisString CreateDoRedis
+        {
+            get
+            {
+                if (doRedis == null)
+                {
+                    lock (lockObj)
+                    {
+                        if (doRedis == null)
+                        {
+                            doRedis = new DoRedisString();
+                        }
+                    }
+                }
+                return doRedis;
+            }
+        }
         #region 赋值
         /// <summary>
         /// 设置key的value
         /// </summary>
         public bool Set(string key, string value)
         {
+            var set = Core.GetHashCode();
             return Core.Set(key, value);
         }
         public bool Set<T>(string key, T value)
@@ -67,6 +88,8 @@ namespace TaiMingAI.Caches.Redis
         /// </summary>
         public string Get(string key)
         {
+
+            var get = Core.GetHashCode();
             return Core.GetValue(key);
         }
         /// <summary>

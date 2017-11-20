@@ -6,8 +6,30 @@ using System.Threading.Tasks;
 
 namespace TaiMingAI.Caches.Redis
 {
-    public class RedisSortedSet : RedisHelper
+    /// <summary>
+    /// 有序集合
+    /// </summary>
+    public class DoRedisSortedSet : RedisHelper
     {
+        private static DoRedisSortedSet doRedis;
+        private DoRedisSortedSet() { }
+        public static DoRedisSortedSet CreateDoRedis
+        {
+            get
+            {
+                if (doRedis == null)
+                {
+                    lock (lockObj)
+                    {
+                        if (doRedis == null)
+                        {
+                            doRedis = new DoRedisSortedSet();
+                        }
+                    }
+                }
+                return doRedis;
+            }
+        }
         #region 添加
         /// <summary>
         /// 添加key/value，默认分数是从1.多*10的9次方以此递增的,自带自增效果

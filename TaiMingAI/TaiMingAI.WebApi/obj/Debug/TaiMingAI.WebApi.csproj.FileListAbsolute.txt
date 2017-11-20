@@ -49,7 +49,9 @@ E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\System.Web.Razor.dll
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\System.Web.WebPages.Deployment.dll
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\System.Web.WebPages.dll
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\System.Web.WebPages.Razor.dll
+E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\TaiMingAI.Tools.dll
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\WebGrease.dll
+E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\TaiMingAI.Tools.pdb
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\Newtonsoft.Json.xml
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\System.Net.Http.Formatting.xml
@@ -82,5 +84,3 @@ E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\obj\Debug\TaiMingAI.WebApi.c
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\obj\Debug\TaiMingAI.WebApi.csproj.CoreCompileInputs.cache
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\obj\Debug\TaiMingAI.WebApi.dll
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\obj\Debug\TaiMingAI.WebApi.pdb
-E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\TaiMingAI.Tools.dll
-E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\TaiMingAI.Tools.pdb

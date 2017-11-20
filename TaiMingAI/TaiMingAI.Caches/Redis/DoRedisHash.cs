@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiceStack.Redis;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,30 @@ using System.Threading.Tasks;
 
 namespace TaiMingAI.Caches.Redis
 {
-    public class RedisHash : RedisHelper
+    /// <summary>
+    /// 哈希表
+    /// </summary>
+    public class DoRedisHash : RedisHelper
     {
+        private static DoRedisHash doRedis;
+        private DoRedisHash() { }
+        public static DoRedisHash CreateDoRedis
+        {
+            get
+            {
+                if (doRedis == null)
+                {
+                    lock (lockObj)
+                    {
+                        if (doRedis == null)
+                        {
+                            doRedis = new DoRedisHash();
+                        }
+                    }
+                }
+                return doRedis;
+            }
+        }
         #region 添加
         /// <summary>
         /// 向hashid集合中添加key/value

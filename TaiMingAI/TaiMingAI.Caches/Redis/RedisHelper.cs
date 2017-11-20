@@ -10,6 +10,7 @@ namespace TaiMingAI.Caches.Redis
     {
         public static IRedisClient Core { get; private set; }
         private bool _disposed = false;
+        protected static readonly object lockObj = new object();
         static RedisHelper()
         {
             Core = RedisManager.GetClient();

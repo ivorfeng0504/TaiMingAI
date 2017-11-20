@@ -6,8 +6,30 @@ using System.Threading.Tasks;
 
 namespace TaiMingAI.Caches.Redis
 {
-    public class RedisSet : RedisHelper
+    /// <summary>
+    /// 集合
+    /// </summary>
+    public class DoRedisSet : RedisHelper
     {
+        private static DoRedisSet doRedis;
+        private DoRedisSet() { }
+        public static DoRedisSet CreateDoRedis
+        {
+            get
+            {
+                if (doRedis == null)
+                {
+                    lock (lockObj)
+                    {
+                        if (doRedis == null)
+                        {
+                            doRedis = new DoRedisSet();
+                        }
+                    }
+                }
+                return doRedis;
+            }
+        }
         #region 添加
         /// <summary>
         /// key集合中添加value值
@@ -30,7 +52,7 @@ namespace TaiMingAI.Caches.Redis
         /// </summary>
         public string GetRandomItemFromSet(string key)
         {
-            return  Core.GetRandomItemFromSet(key);
+            return Core.GetRandomItemFromSet(key);
         }
         /// <summary>
         /// 获取key集合值的数量

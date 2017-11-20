@@ -4,14 +4,37 @@ using System.Collections.Generic;
 
 namespace TaiMingAI.Caches.Redis
 {
-    public class RedisList : RedisHelper
+    /// <summary>
+    /// 列表
+    /// </summary>
+    public class DoRedisList : RedisHelper
     {
+        private static DoRedisList doRedis;
+        private DoRedisList() { }
+        public static DoRedisList CreateDoRedis
+        {
+            get
+            {
+                if (doRedis == null)
+                {
+                    lock (lockObj)
+                    {
+                        if (doRedis == null)
+                        {
+                            doRedis = new DoRedisList();
+                        }
+                    }
+                }
+                return doRedis;
+            }
+        }
         #region 赋值
         /// <summary>
         /// 从左侧向list中添加值
         /// </summary>
         public void LPush(string key, string value)
         {
+            var LPush = Core.GetHashCode();
             Core.PushItemToList(key, value);
         }
         /// <summary>
