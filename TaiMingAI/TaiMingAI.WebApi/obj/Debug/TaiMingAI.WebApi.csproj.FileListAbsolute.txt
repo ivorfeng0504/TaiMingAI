@@ -51,6 +51,7 @@ E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\System.Web.WebPages.dll
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\System.Web.WebPages.Razor.dll
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\TaiMingAI.Tools.dll
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\WebGrease.dll
+E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\log4net.dll
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\TaiMingAI.Tools.pdb
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.WebApi\bin\Newtonsoft.Json.xml

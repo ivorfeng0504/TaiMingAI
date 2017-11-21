@@ -18,7 +18,6 @@ E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.Caches\bin\Debug\ServiceStack.Commo
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.Caches\bin\Debug\ServiceStack.Interfaces.xml
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.Caches\bin\Debug\ServiceStack.Redis.xml
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.Caches\bin\Debug\ServiceStack.Text.xml
-E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.Caches\obj\Debug\TaiMingAI.Caches.csprojResolveAssemblyReference.cache
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.Caches\obj\Debug\TaiMingAI.Caches.csproj.CoreCompileInputs.cache
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.Caches\obj\Debug\TaiMingAI.Caches.dll
 E:\TestProgram\TaiMingAI\TaiMingAI\TaiMingAI.Caches\obj\Debug\TaiMingAI.Caches.pdb

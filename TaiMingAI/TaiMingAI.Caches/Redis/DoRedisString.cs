@@ -34,7 +34,6 @@ namespace TaiMingAI.Caches.Redis
         /// </summary>
         public bool Set(string key, string value)
         {
-            var set = Core.GetHashCode();
             return Core.Set(key, value);
         }
         public bool Set<T>(string key, T value)
@@ -88,8 +87,6 @@ namespace TaiMingAI.Caches.Redis
         /// </summary>
         public string Get(string key)
         {
-
-            var get = Core.GetHashCode();
             return Core.GetValue(key);
         }
         /// <summary>

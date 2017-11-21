@@ -31,22 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ServiceStack.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\TaiMingAI.Caches\Redis\dll\ServiceStack.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Interfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\TaiMingAI.Caches\Redis\dll\ServiceStack.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Redis, Version=3.9.60.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\TaiMingAI.Caches\Redis\dll\ServiceStack.Redis.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.9.60.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\TaiMingAI.Caches\Redis\dll\ServiceStack.Text.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -65,11 +49,22 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TaiMingAI.Caches\TaiMingAI.Caches.csproj">
       <Project>{624a5002-406a-4e33-9380-0752695a2e7c}</Project>
       <Name>TaiMingAI.Caches</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaiMingAI.Tools\TaiMingAI.Tools.csproj">
+      <Project>{32101ba4-818d-4a50-900b-aefd4ecb0441}</Project>
+      <Name>TaiMingAI.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaiMingAI.WebApi\TaiMingAI.WebApi.csproj">
+      <Project>{06e563b4-b96f-428d-a102-c4adaca37000}</Project>
+      <Name>TaiMingAI.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

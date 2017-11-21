@@ -1,0 +1,8 @@
+2017-11-20 17:57:16,305 [1] ERROR logInfo [(null)] <(null)>
+ - key:齐天大圣;value:"我若成魔,佛奈我何"
+2017-11-20 17:58:46,024 [1] ERROR logInfo [(null)] <(null)>
+ - key:齐天大圣;value:我若成魔,佛奈我何
+2017-11-20 17:59:15,475 [1] ERROR logInfo [(null)] <(null)>
+ - key:齐天大圣;value:我若成魔,佛奈我何
+2017-11-20 17:59:43,675 [1] ERROR logInfo [(null)] <(null)>
+ - key:齐天大圣;value:"我若成魔,佛奈我何"
