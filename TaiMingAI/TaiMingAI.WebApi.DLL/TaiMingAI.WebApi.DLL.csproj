@@ -43,11 +43,5 @@
     <Compile Include="UserDLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TaiMingAI.DataHelper\TaiMingAI.DBTools.csproj">
-      <Project>{4eabac04-d30d-4afb-ad34-d10ef766a651}</Project>
-      <Name>TaiMingAI.DBTools</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

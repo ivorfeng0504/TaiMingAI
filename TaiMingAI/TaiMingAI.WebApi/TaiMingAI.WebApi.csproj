@@ -183,6 +183,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ResponseMsg.cs" />
     <Compile Include="Models\UserInfoApiGet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -218,6 +219,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Config\dev\AppSetting.config" />
+    <Content Include="Config\dev\ConnectionStrings.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -259,6 +261,14 @@
     <ProjectReference Include="..\TaiMingAI.Tools\TaiMingAI.Tools.csproj">
       <Project>{32101ba4-818d-4a50-900b-aefd4ecb0441}</Project>
       <Name>TaiMingAI.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaiMingAI.WebApi.BLL\TaiMingAI.WebApi.BLL.csproj">
+      <Project>{7b571173-b865-4da0-833d-786cc2d326f7}</Project>
+      <Name>TaiMingAI.WebApi.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaiMingAi.WebApi.Model\TaiMingAi.WebApi.Model.csproj">
+      <Project>{2dd3f0ed-e32c-431c-bc89-1d49764fd5f8}</Project>
+      <Name>TaiMingAi.WebApi.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
