@@ -3,7 +3,9 @@
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Name] NVARCHAR(10) NULL, 
     [Powsword] NCHAR(50) NULL, 
-    [Mobile] INT NULL
+    [Mobile] CHAR(11) NULL, 
+    [Email] NVARCHAR(50) NULL, 
+    CONSTRAINT [Email_Unique] UNIQUE (Email)  
 )
 
 GO
@@ -42,3 +44,12 @@ EXEC sp_addextendedproperty @name = N'MS_Description',
     @level1name = N'TmingUserInfo',
     @level2type = N'COLUMN',
     @level2name = N'Name'
+GO
+EXEC sp_addextendedproperty @name = N'MS_Description',
+    @value = N'注册邮箱',
+    @level0type = N'SCHEMA',
+    @level0name = N'dbo',
+    @level1type = N'TABLE',
+    @level1name = N'TmingUserInfo',
+    @level2type = N'COLUMN',
+    @level2name = N'Email'

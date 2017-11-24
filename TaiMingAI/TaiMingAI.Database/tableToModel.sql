@@ -1,4 +1,4 @@
-﻿declare @TableName varchar(20) = '表名'
+﻿declare @TableName varchar(20) = 'TmingUserInfo'
 declare @Result varchar(max) = 'public class ' + @TableName + '
 {'
 

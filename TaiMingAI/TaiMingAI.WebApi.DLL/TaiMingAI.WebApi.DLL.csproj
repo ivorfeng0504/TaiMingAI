@@ -40,8 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UserDLL.cs" />
+    <Compile Include="UserDll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TaiMingAI.DBTools\TaiMingAI.DBTools.csproj">
+      <Project>{4EABAC04-D30D-4AFB-AD34-D10EF766A651}</Project>
+      <Name>TaiMingAI.DBTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaiMingAi.WebApi.Model\TaiMingAi.WebApi.Model.csproj">
+      <Project>{2DD3F0ED-E32C-431C-BC89-1D49764FD5F8}</Project>
+      <Name>TaiMingAi.WebApi.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

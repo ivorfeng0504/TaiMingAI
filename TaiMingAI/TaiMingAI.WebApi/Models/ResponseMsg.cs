@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace TaiMingAI.WebApi.Models
+namespace TaiMingAI.WebApi
 {
     public enum ResultEnum
     {
@@ -34,18 +34,7 @@ namespace TaiMingAI.WebApi.Models
         /// <summary>
         /// 消息
         /// </summary>
-        public string Msg
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(Msg))
-                {
-                    return "处理成功";
-                }
-                return Msg;
-            }
-            set { Msg = value; }
-        }
+        public string Msg { get; set; }
         /// <summary>
         /// 错误消息
         /// </summary>

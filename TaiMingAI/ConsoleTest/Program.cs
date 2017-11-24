@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Configuration;
 using System.Diagnostics;
+using TaiMingAi.WebApi.Model;
 using TaiMingAI.Caches;
+using TaiMingAI.DataHelper;
 using TaiMingAI.Tools;
+using TaiMingAI.Tools.Xml;
+using TaiMingAI.WebApi;
+using TaiMingAI.WebApi.DLL;
 
 namespace ConsoleTest
 {
@@ -10,6 +15,11 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
+            var dll = UserDll.CreateUserDll;
+            var list = dll.GetUserInfoList();
+            Console.WriteLine();
+            Console.ReadKey();
+            return;
             LogHelper.InfoLog("进入主程序");
             PersonSection person = ConfigurationManager.GetSection("Person") as PersonSection;
             Console.WriteLine("name={0},age={1}", person.Age, person.Name);

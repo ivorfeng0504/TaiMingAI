@@ -10,6 +10,27 @@ namespace TaiMingAI.DBTools
     public class DBContext
     {
         #region 私有方法  
+        private DBContext() { }
+        private static DBContext dBContext { get; set; }
+        private static readonly object obj = new object();
+        public static DBContext InitDBContext
+        {
+            get
+            {
+                if (dBContext == null)
+                {
+                    lock (obj)
+                    {
+                        if (dBContext == null)
+                        {
+                            dBContext = new DBContext();
+                        }
+                    }
+                }
+                return dBContext;
+            }
+        }
+
         /// <summary>   
         /// 将SqlParameter参数数组(参数值)分配给SqlCommand命令.   
         /// 这个方法将给任何一个参数分配DBNull.Value;   
@@ -686,6 +707,263 @@ namespace TaiMingAI.DBTools
         }
 
         #endregion ExecuteDataset数据集命令结束  
+
+        #region ExecuteDataTable方法  
+
+        /// <summary>   
+        /// 执行指定数据库连接字符串的命令,返回DataSet.   
+        /// </summary>   
+        /// <remarks>   
+        /// 示例:    
+        ///  DataSet ds = ExecuteDataset(connString, CommandType.StoredProcedure, "GetOrders");   
+        /// </remarks>   
+        /// <param name="connectionString">一个有效的数据库连接字符串</param>   
+        /// <param name="commandType">命令类型 (存储过程,命令文本或其它)</param>   
+        /// <param name="commandText">存储过程名称或T-SQL语句</param>   
+        /// <returns>返回一个包含结果集的DataSet</returns>   
+        public DataTable ExecuteDataTable(string connectionString, CommandType commandType, string commandText)
+        {
+            return ExecuteDataTable(connectionString, commandType, commandText, null);
+        }
+
+        /// <summary>   
+        /// 执行指定数据库连接字符串的命令,返回DataSet.   
+        /// </summary>   
+        /// <remarks>   
+        /// 示例:   
+        ///  DataSet ds = ExecuteDataset(connString, CommandType.StoredProcedure, "GetOrders", new SqlParameter("@prodid", 24));   
+        /// </remarks>   
+        /// <param name="connectionString">一个有效的数据库连接字符串</param>   
+        /// <param name="commandType">命令类型 (存储过程,命令文本或其它)</param>   
+        /// <param name="commandText">存储过程名称或T-SQL语句</param>   
+        /// <param name="commandParameters">SqlParamters参数数组</param>   
+        /// <returns>返回一个包含结果集的DataSet</returns>   
+        public DataTable ExecuteDataTable(string connectionString, CommandType commandType, string commandText, params SqlParameter[] commandParameters)
+        {
+            if (connectionString == null || connectionString.Length == 0) throw new ArgumentNullException("connectionString");
+
+            // 创建并打开数据库连接对象,操作完成释放对象.   
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // 调用指定数据库连接字符串重载方法.   
+                return ExecuteDataTable(connection, commandType, commandText, commandParameters);
+            }
+        }
+
+        /// <summary>   
+        /// 执行指定数据库连接字符串的命令,直接提供参数值,返回DataSet.   
+        /// </summary>   
+        /// <remarks>   
+        /// 此方法不提供访问存储过程输出参数和返回值.   
+        /// 示例:   
+        ///  DataSet ds = ExecuteDataset(connString, "GetOrders", 24, 36);   
+        /// </remarks>   
+        /// <param name="connectionString">一个有效的数据库连接字符串</param>   
+        /// <param name="spName">存储过程名</param>   
+        /// <param name="parameterValues">分配给存储过程输入参数的对象数组</param>   
+        /// <returns>返回一个包含结果集的DataSet</returns>   
+        public DataTable ExecuteDataTable(string connectionString, string spName, params object[] parameterValues)
+        {
+            if (connectionString == null || connectionString.Length == 0) throw new ArgumentNullException("connectionString");
+            if (spName == null || spName.Length == 0) throw new ArgumentNullException("spName");
+
+            if ((parameterValues != null) && (parameterValues.Length > 0))
+            {
+                // 从缓存中检索存储过程参数   
+                SqlParameter[] commandParameters = SqlHelperParameterCache.GetSpParameterSet(connectionString, spName);
+
+                // 给存储过程参数分配值   
+                AssignParameterValues(commandParameters, parameterValues);
+
+                return ExecuteDataTable(connectionString, CommandType.StoredProcedure, spName, commandParameters);
+            }
+            else
+            {
+                return ExecuteDataTable(connectionString, CommandType.StoredProcedure, spName);
+            }
+        }
+
+        /// <summary>   
+        /// 执行指定数据库连接对象的命令,返回DataSet.   
+        /// </summary>   
+        /// <remarks>   
+        /// 示例:    
+        ///  DataSet ds = ExecuteDataset(conn, CommandType.StoredProcedure, "GetOrders");   
+        /// </remarks>   
+        /// <param name="connection">一个有效的数据库连接对象</param>   
+        /// <param name="commandType">命令类型 (存储过程,命令文本或其它)</param>   
+        /// <param name="commandText">存储过程名或T-SQL语句</param>   
+        /// <returns>返回一个包含结果集的DataSet</returns>   
+        public DataTable ExecuteDataTable(SqlConnection connection, CommandType commandType, string commandText)
+        {
+            return ExecuteDataTable(connection, commandType, commandText, null);
+        }
+
+        /// <summary>   
+        /// 执行指定数据库连接对象的命令,指定存储过程参数,返回DataSet.   
+        /// </summary>   
+        /// <remarks>   
+        /// 示例:    
+        ///  DataSet ds = ExecuteDataset(conn, CommandType.StoredProcedure, "GetOrders", new SqlParameter("@prodid", 24));   
+        /// </remarks>   
+        /// <param name="connection">一个有效的数据库连接对象</param>   
+        /// <param name="commandType">命令类型 (存储过程,命令文本或其它)</param>   
+        /// <param name="commandText">存储过程名或T-SQL语句</param>   
+        /// <param name="commandParameters">SqlParamter参数数组</param>   
+        /// <returns>返回一个包含结果集的DataSet</returns>   
+        public DataTable ExecuteDataTable(SqlConnection connection, CommandType commandType, string commandText, params SqlParameter[] commandParameters)
+        {
+            if (connection == null) throw new ArgumentNullException("connection");
+            bool mustCloseConnection = true;
+            try
+            {
+                // 预处理   
+                SqlCommand cmd = new SqlCommand();
+                PrepareCommand(cmd, connection, null, commandType, commandText, commandParameters, out mustCloseConnection);
+
+                // 创建SqlDataAdapter和DataSet.   
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    DataTable dt = new DataTable();
+
+                    // 填充DataSet.   
+                    da.Fill(dt);
+
+                    cmd.Parameters.Clear();
+
+                    return dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.FatalLog("ExecuteDataset方法异常", ex);
+                throw new ArgumentNullException("SqlHelper:ExecuteDataset方法异常", ex);
+            }
+            finally
+            {
+                if (mustCloseConnection)
+                    connection.Close();
+            }
+        }
+
+        /// <summary>   
+        /// 执行指定数据库连接对象的命令,指定参数值,返回DataSet.   
+        /// </summary>   
+        /// <remarks>   
+        /// 此方法不提供访问存储过程输入参数和返回值.   
+        /// 示例.:    
+        ///  DataSet ds = ExecuteDataset(conn, "GetOrders", 24, 36);   
+        /// </remarks>   
+        /// <param name="connection">一个有效的数据库连接对象</param>   
+        /// <param name="spName">存储过程名</param>   
+        /// <param name="parameterValues">分配给存储过程输入参数的对象数组</param>   
+        /// <returns>返回一个包含结果集的DataSet</returns>   
+        public DataTable ExecuteDataTable(SqlConnection connection, string spName, params object[] parameterValues)
+        {
+            if (connection == null) throw new ArgumentNullException("connection");
+            if (spName == null || spName.Length == 0) throw new ArgumentNullException("spName");
+
+            if ((parameterValues != null) && (parameterValues.Length > 0))
+            {
+                // 比缓存中加载存储过程参数   
+                SqlParameter[] commandParameters = SqlHelperParameterCache.GetSpParameterSet(connection, spName);
+
+                // 给存储过程参数分配值   
+                AssignParameterValues(commandParameters, parameterValues);
+
+                return ExecuteDataTable(connection, CommandType.StoredProcedure, spName, commandParameters);
+            }
+            else
+            {
+                return ExecuteDataTable(connection, CommandType.StoredProcedure, spName);
+            }
+        }
+
+        /// <summary>   
+        /// 执行指定事务的命令,返回DataSet.   
+        /// </summary>   
+        /// <remarks>   
+        /// 示例:    
+        ///  DataSet ds = ExecuteDataset(trans, CommandType.StoredProcedure, "GetOrders");   
+        /// </remarks>   
+        /// <param name="transaction">事务</param>   
+        /// <param name="commandType">命令类型 (存储过程,命令文本或其它)</param>   
+        /// <param name="commandText">存储过程名或T-SQL语句</param>   
+        /// <returns>返回一个包含结果集的DataSet</returns>   
+        public DataTable ExecuteDataTable(SqlTransaction transaction, CommandType commandType, string commandText)
+        {
+            return ExecuteDataTable(transaction, commandType, commandText, (SqlParameter[])null);
+        }
+
+        /// <summary>   
+        /// 执行指定事务的命令,指定参数,返回DataSet.   
+        /// </summary>   
+        /// <remarks>   
+        /// 示例:    
+        ///  DataSet ds = ExecuteDataset(trans, CommandType.StoredProcedure, "GetOrders", new SqlParameter("@prodid", 24));   
+        /// </remarks>   
+        /// <param name="transaction">事务</param>   
+        /// <param name="commandType">命令类型 (存储过程,命令文本或其它)</param>   
+        /// <param name="commandText">存储过程名或T-SQL语句</param>   
+        /// <param name="commandParameters">SqlParamter参数数组</param>   
+        /// <returns>返回一个包含结果集的DataSet</returns>   
+        public DataTable ExecuteDataTable(SqlTransaction transaction, CommandType commandType, string commandText, params SqlParameter[] commandParameters)
+        {
+            if (transaction == null) throw new ArgumentNullException("transaction");
+            if (transaction != null && transaction.Connection == null)
+                throw new ArgumentException("The transaction was rollbacked or commited, please provide an open transaction.", "transaction");
+
+            // 预处理   
+            SqlCommand cmd = new SqlCommand();
+            PrepareCommand(cmd, transaction.Connection, transaction, commandType, commandText, commandParameters, out bool mustCloseConnection);
+
+            // 创建 DataAdapter & DataSet   
+            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+            {
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                cmd.Parameters.Clear();
+                return dt;
+            }
+        }
+
+        /// <summary>   
+        /// 执行指定事务的命令,指定参数值,返回DataSet.   
+        /// </summary>   
+        /// <remarks>   
+        /// 此方法不提供访问存储过程输入参数和返回值.   
+        /// 示例.:    
+        ///  DataSet ds = ExecuteDataset(trans, "GetOrders", 24, 36);   
+        /// </remarks>   
+        /// <param name="transaction">事务</param>   
+        /// <param name="spName">存储过程名</param>   
+        /// <param name="parameterValues">分配给存储过程输入参数的对象数组</param>   
+        /// <returns>返回一个包含结果集的DataSet</returns>   
+        public DataTable ExecuteDataTable(SqlTransaction transaction, string spName, params object[] parameterValues)
+        {
+            if (transaction == null) throw new ArgumentNullException("transaction");
+            if (transaction != null && transaction.Connection == null) throw new ArgumentException("The transaction was rollbacked or commited, please provide an open transaction.", "transaction");
+            if (spName == null || spName.Length == 0) throw new ArgumentNullException("spName");
+
+            if ((parameterValues != null) && (parameterValues.Length > 0))
+            {
+                // 从缓存中加载存储过程参数   
+                SqlParameter[] commandParameters = SqlHelperParameterCache.GetSpParameterSet(transaction.Connection, spName);
+
+                // 给存储过程参数分配值   
+                AssignParameterValues(commandParameters, parameterValues);
+
+                return ExecuteDataTable(transaction, CommandType.StoredProcedure, spName, commandParameters);
+            }
+            else
+            {
+                return ExecuteDataTable(transaction, CommandType.StoredProcedure, spName);
+            }
+        }
+
+        #endregion ExecuteDataTable数据集命令结束  
 
         #region ExecuteReader 数据阅读器  
 

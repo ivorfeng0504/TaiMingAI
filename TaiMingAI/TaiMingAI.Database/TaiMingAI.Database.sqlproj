@@ -67,4 +67,7 @@
   <ItemGroup>
     <None Include="tableToModel.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="TaiMingAI.Database.refactorlog" />
+  </ItemGroup>
 </Project>

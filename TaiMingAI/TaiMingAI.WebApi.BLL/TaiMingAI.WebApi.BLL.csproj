@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>7b571173-b865-4da0-833d-786cc2d326f7</ProjectGuid>
+    <ProjectGuid>{7B571173-B865-4DA0-833D-786CC2D326F7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TaiMingAI.WebApi.BLL</RootNamespace>
@@ -30,24 +30,36 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="UserBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TaiMingAI.Caches\TaiMingAI.Caches.csproj">
+      <Project>{624a5002-406a-4e33-9380-0752695a2e7c}</Project>
+      <Name>TaiMingAI.Caches</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaiMingAI.Tools\TaiMingAI.Tools.csproj">
+      <Project>{32101ba4-818d-4a50-900b-aefd4ecb0441}</Project>
+      <Name>TaiMingAI.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaiMingAI.WebApi.DLL\TaiMingAI.WebApi.DLL.csproj">
+      <Project>{8d42104c-6374-4c66-995b-53e24eaafa07}</Project>
+      <Name>TaiMingAI.WebApi.DLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaiMingAi.WebApi.Model\TaiMingAi.WebApi.Model.csproj">
+      <Project>{2dd3f0ed-e32c-431c-bc89-1d49764fd5f8}</Project>
+      <Name>TaiMingAi.WebApi.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>

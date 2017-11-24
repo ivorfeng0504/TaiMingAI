@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="a906a0bd-1bd5-4db3-8b31-9f9192cd18da" ChangeDateTime="11/24/2017 07:00:29">
+    <Property Name="ElementName" Value="[dbo].[CK_TmingUserInfo_Column]" />
+    <Property Name="ElementType" Value="SqlCheckConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[TmingUserInfo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[CK_TmingUserInfo_Email]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7dd7d6bb-6e52-47b7-952f-048936a508dd" ChangeDateTime="11/24/2017 07:06:09">
+    <Property Name="ElementName" Value="[dbo].[CK_TmingUserInfo_Column]" />
+    <Property Name="ElementType" Value="SqlCheckConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[TmingUserInfo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[CK_TmingUserInfo_Email]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="386935da-99cf-4c5f-a3cf-d16170debffe" ChangeDateTime="11/24/2017 07:06:31">
+    <Property Name="ElementName" Value="[dbo].[CK_TmingUserInfo_Email]" />
+    <Property Name="ElementType" Value="SqlCheckConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[TmingUserInfo]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[Email]" />
+  </Operation>
+</Operations>

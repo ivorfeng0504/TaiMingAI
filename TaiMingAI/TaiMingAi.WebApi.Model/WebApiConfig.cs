@@ -16,7 +16,7 @@ namespace TaiMingAi.WebApi.Model
         {
             get
             {
-                return ConfigurationManager.AppSettings["DbUserConnectionString"];
+                return ConfigurationManager.ConnectionStrings["DbUserConnectionString"].ConnectionString;
             }
         }
     }

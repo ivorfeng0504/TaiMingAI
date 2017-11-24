@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Xml.Serialization;
 
-namespace TaiMingAI.WebApi.Models
+namespace TaiMingAI.WebApi
 {
     [XmlType("Data")]
     public class Data

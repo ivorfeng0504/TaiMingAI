@@ -58,9 +58,21 @@
       <Project>{624a5002-406a-4e33-9380-0752695a2e7c}</Project>
       <Name>TaiMingAI.Caches</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TaiMingAI.DBTools\TaiMingAI.DBTools.csproj">
+      <Project>{4EABAC04-D30D-4AFB-AD34-D10EF766A651}</Project>
+      <Name>TaiMingAI.DBTools</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaiMingAI.Tools\TaiMingAI.Tools.csproj">
       <Project>{32101ba4-818d-4a50-900b-aefd4ecb0441}</Project>
       <Name>TaiMingAI.Tools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaiMingAI.WebApi.DLL\TaiMingAI.WebApi.DLL.csproj">
+      <Project>{8D42104C-6374-4C66-995B-53E24EAAFA07}</Project>
+      <Name>TaiMingAI.WebApi.DLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaiMingAi.WebApi.Model\TaiMingAi.WebApi.Model.csproj">
+      <Project>{2DD3F0ED-E32C-431C-BC89-1D49764FD5F8}</Project>
+      <Name>TaiMingAi.WebApi.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\TaiMingAI.WebApi\TaiMingAI.WebApi.csproj">
       <Project>{06e563b4-b96f-428d-a102-c4adaca37000}</Project>
