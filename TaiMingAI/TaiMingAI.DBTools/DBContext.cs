@@ -11,23 +11,23 @@ namespace TaiMingAI.DBTools
     {
         #region 私有方法  
         private DBContext() { }
-        private static DBContext dBContext { get; set; }
+        private static DBContext _DBContext { get; set; }
         private static readonly object obj = new object();
         public static DBContext InitDBContext
         {
             get
             {
-                if (dBContext == null)
+                if (_DBContext == null)
                 {
                     lock (obj)
                     {
-                        if (dBContext == null)
+                        if (_DBContext == null)
                         {
-                            dBContext = new DBContext();
+                            _DBContext = new DBContext();
                         }
                     }
                 }
-                return dBContext;
+                return _DBContext;
             }
         }
 

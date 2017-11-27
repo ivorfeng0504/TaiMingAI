@@ -54,7 +54,7 @@ namespace TaiMingAI.WebApi.DLL
             var sql = "select * from TmingUserInfo";
             var dBContext = DBContext.InitDBContext;
             var data = dBContext.ExecuteDataTable("Data Source=.;Initial Catalog=TaiMingUser;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False", CommandType.Text, sql);
-            return DataConvertHelper.DataTableToModel<TmingUserInfo>(data);
+            return DataConvertHelper.DataTableToList<TmingUserInfo>(data);
         }
     }
 }
