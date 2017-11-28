@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -8,17 +9,17 @@ namespace TaiMingAI.Tools.Xml
 {
     public class XmlHelper
     {
+        #region 构造函数+私有属性
         private readonly string _xmlPath;
         public XmlDocument Doc;
-        /// <summary>
-        /// xml文件路径
-        /// </summary>
-        /// <param name="xmlPath"></param>
+        /// <param name="xmlPath">xml文件路径</param>
         public XmlHelper(string xmlPath)
         {
             _xmlPath = xmlPath;
         }
+        #endregion
 
+        #region xml读写
         /// <summary>
         /// 创建xml文件
         /// </summary>
@@ -92,7 +93,49 @@ namespace TaiMingAI.Tools.Xml
                 }
             }
         }
+        /// <summary>
+        /// 读取xml的节点
+        /// </summary>
+        /// <param name="path">路径</param>
+        /// <param name="nodeName">节点名称</param>
+        /// <param name="name">属性名称</param>
+        /// <returns>属性值</returns>
+        public static string ReadXml(string path, string nodeName, string name)
+        {
+            var xmlValue = string.Empty;
+            FileStream myFile = null;
+            XmlTextReader xmlTextReader = null;
+            try
+            {
+                if (!File.Exists(path)) return xmlValue;
 
+                myFile = new FileStream(path, FileMode.Open); //打开xml文件 
+                xmlTextReader = new XmlTextReader(myFile); //xml文件阅读器 
+                while (xmlTextReader.Read())
+                {
+                    if (xmlTextReader.Name == nodeName)
+                    {
+                        xmlValue = xmlTextReader.GetAttribute(name);
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogHelper.ErrorLog("读取xml的节点异常", ex);
+            }
+            finally
+            {
+                if (myFile != null)
+                    xmlTextReader.Close();
+                if (xmlTextReader != null)
+                    myFile.Close();
+            }
+            return xmlValue;
+        }
+        #endregion
+
+        #region xml反序列化
         /// <summary>
         /// xml_TO_model
         /// </summary>
@@ -104,7 +147,9 @@ namespace TaiMingAI.Tools.Xml
             try
             {
                 if (!File.Exists(filePath))
-                    throw new ArgumentNullException(filePath + " not Exists");
+                {
+                    File.Create(filePath);
+                }
                 using (StreamReader reader = new StreamReader(filePath))
                 {
                     XmlSerializer xs = new XmlSerializer(typeof(T));
@@ -112,18 +157,21 @@ namespace TaiMingAI.Tools.Xml
                     return ret;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                LogHelper.ErrorLog("DeserializeFromXml反序列化异常", ex);
                 return default(T);
             }
         }
+        #endregion
 
+        #region xml序列化
         /// <summary>
         /// model_TO_xml
         /// </summary>
-        /// <typeparam name="T">待反序列化类型</typeparam>
+        /// <typeparam name="T">需要序列化的对象类型，必须声明[Serializable]特征</typeparam>
         /// <param name="filePath">保存xml路径</param>
-        /// <param name="obj">待反序列化数据</param>
+        /// <param name="obj">需要序列化的对象</param>
         public static void SerializeToXml<T>(string filePath, T obj)
         {
             try
@@ -134,11 +182,51 @@ namespace TaiMingAI.Tools.Xml
                     xs.Serialize(writer, obj);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // ignored
+                LogHelper.ErrorLog("SerializeToXml序列化异常", ex);
             }
         }
+
+        /// <summary>
+        /// model_TO_xmlStr
+        /// </summary>
+        /// <typeparam name="T">需要序列化的对象类型，必须声明[Serializable]特征</typeparam>
+        /// <param name="obj">需要序列化的对象</param>
+        /// <param name="omitXmlDeclaration">true:省略XML声明;否则为false.默认false，即编写 XML 声明。</param>
+        /// <returns>序列化后的字符串</returns>
+        public static string XmlSerialize<T>(T obj, bool omitXmlDeclaration = false)
+        {
+            try
+            {
+                //This property only applies to XmlWriter instances that output text content to a stream; otherwise, this setting is ignored.
+                //可能很多朋友遇见过 不能转换成Xml不能反序列化成为UTF8XML声明的情况，就是这个原因。
+                var xmlSettings = new XmlWriterSettings
+                {
+                    OmitXmlDeclaration = omitXmlDeclaration,
+                    Encoding = new UTF8Encoding(false)
+                };
+                var stream = new MemoryStream();
+                var xmlwriter = XmlWriter.Create(stream, xmlSettings);
+                //这里如果直接写成：Encoding = Encoding.UTF8 会在生成的xml中加入BOM(Byte-order Mark) 信息(Unicode 字节顺序标记),
+                //所以new System.Text.UTF8Encoding(false)是最佳方式，省得再做替换的麻烦
+                var xmlSerializerNamespaces = new XmlSerializerNamespaces();
+
+                //在XML序列化时去除默认命名空间xmlns:xsd和xmlns:xsi
+                xmlSerializerNamespaces.Add(string.Empty, string.Empty);
+                var xmlSerializer = new XmlSerializer(typeof(T));
+                xmlSerializer.Serialize(xmlwriter, obj, xmlSerializerNamespaces);
+
+                return Encoding.UTF8.GetString(stream.ToArray());
+            }
+            catch (Exception ex)
+            {
+                LogHelper.ErrorLog("XmlSerialize序列化异常", ex);
+                return string.Empty;
+            }
+
+        }
+        #endregion
     }
     /// <summary>
     /// 创建xml实体类型

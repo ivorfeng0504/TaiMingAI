@@ -16,7 +16,7 @@ namespace ConsoleTest
         static void Main(string[] args)
         {
             var dll = UserDll.CreateUserDll;
-            var list = dll.GetUserInfoList();
+            var list = dll.InternalRegisterUser(null);
             Console.WriteLine();
             Console.ReadKey();
             return;

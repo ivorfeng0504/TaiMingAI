@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Xml;
 using TaiMingAI.Tools;
 
@@ -2501,6 +2502,34 @@ namespace TaiMingAI.DBTools
             }
         }
         #endregion
+
+        /// <summary>
+        /// 获取sql语句
+        /// </summary>
+        /// <param name="key">文件名.节点key</param>
+        /// <returns>sql语句</returns>
+        public string GetSql(string key)
+        {
+            try
+            {
+                //文件名.节点
+                string[] sqlLayers = key.Split('.');
+                //文件路径
+                string filePath = string.Format(AppDomain.CurrentDomain.BaseDirectory + @"\{0}.config", sqlLayers[0]);
+                //解析xml
+                XmlDocument Xdoc = new XmlDocument();
+                Xdoc.Load(filePath);
+                XmlNodeList list = Xdoc.SelectNodes("configuration/sqlmapping");
+                XmlNode mappingNode = list.Cast<XmlNode>().FirstOrDefault(x => x.Attributes["key"].Value.Equals(sqlLayers[1]));
+                XmlNode sqlNode = mappingNode.SelectSingleNode("sql");
+                return sqlNode.InnerText.Replace("\r\n", "").Trim();
+            }
+            catch (Exception ex)
+            {
+                LogHelper.ErrorLog("GetSql异常", ex);
+                return string.Empty;
+            }
+        }
     }
 
     /// <summary>   
@@ -2719,7 +2748,6 @@ namespace TaiMingAI.DBTools
         }
 
         #endregion 参数集检索结束  
-
     }
 
 }

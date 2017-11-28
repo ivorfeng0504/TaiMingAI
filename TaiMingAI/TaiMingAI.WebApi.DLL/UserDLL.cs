@@ -38,9 +38,8 @@ namespace TaiMingAI.WebApi.DLL
         /// <returns></returns>
         public bool InternalRegisterUser(TmingUserInfo info)
         {
-            var sql = @"INSERT INTO [TmingUserInfo]([Name],[Powsword],[Mobile],[Email])
-                        VALUES(@Name,@Powsword,@Mobile,@Email)";
             var dBContext = DBContext.InitDBContext;
+            var sql = dBContext.GetSql("UserSql.InternalRegisterUser");
             var result = dBContext.ExecuteNonQuery(WebApiConfig.DbUserConnectionString, CommandType.Text, sql,
                 new SqlParameter("@Name", info.Name),
                 new SqlParameter("@Powsword", info.Powsword),
@@ -51,9 +50,10 @@ namespace TaiMingAI.WebApi.DLL
 
         public List<TmingUserInfo> GetUserInfoList()
         {
-            var sql = "select * from TmingUserInfo";
             var dBContext = DBContext.InitDBContext;
-            var data = dBContext.ExecuteDataTable("Data Source=.;Initial Catalog=TaiMingUser;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False", CommandType.Text, sql);
+            var sql = dBContext.GetSql("UserSql.GetUserInfoList");
+            var data = dBContext.ExecuteDataTable(WebApiConfig.DbUserConnectionString, CommandType.Text, sql);
+            var list = DataConvertHelper.DataTableToList<TmingUserInfo>(data);
             return DataConvertHelper.DataTableToList<TmingUserInfo>(data);
         }
     }

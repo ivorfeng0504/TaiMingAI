@@ -2,7 +2,7 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Name] NVARCHAR(10) NULL, 
-    [Powsword] NCHAR(50) NULL, 
+    [Powsword] VARCHAR(50) NULL, 
     [Mobile] CHAR(11) NULL, 
     [Email] NVARCHAR(50) NULL, 
     CONSTRAINT [Email_Unique] UNIQUE (Email)  

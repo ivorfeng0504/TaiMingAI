@@ -40,5 +40,21 @@ namespace TaiMingAI.WebApi.Controllers
             return res;
         }
         #endregion
+
+        public ResponseMsg<List<TmingUserInfo>> GetUserList()
+        {
+            ResponseMsg<List<TmingUserInfo>> res = null;
+            try
+            {
+                UserBll userBll = new UserBll();
+                var result = userBll.GetUserList();
+                res = SuccessResponseMsg(result);
+            }
+            catch (Exception ex)
+            {
+                res = ExceptionResponseMsg<List<TmingUserInfo>>("GetUserList", ex);
+            }
+            return res;
+        }
     }
 }

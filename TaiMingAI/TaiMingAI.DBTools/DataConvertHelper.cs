@@ -20,7 +20,7 @@ namespace TaiMingAI.DataHelper
         /// <returns>实体List</returns>
         public static List<T> DataTableToList<T>(DataTable dt) where T : class, new()
         {
-            if (dt == null || dt.Rows.Count == 0) return null;
+            if (dt == null || dt.Rows.Count == 0) throw new ArgumentNullException("DataTableToList", "被转换数据为空");
             //获取转换类型
             Type t = typeof(T);
             //获取转换类型的公有属性
@@ -49,7 +49,7 @@ namespace TaiMingAI.DataHelper
         /// <returns>实体Model</returns>
         public static T DataRowToModel<T>(DataRow dr) where T : class, new()
         {
-            if (dr == null) return null;
+            if (dr == null) throw new ArgumentNullException("DataRowToModel", "被转换数据为空");
             //获取转换类型
             Type t = typeof(T);
             //获取转换类型的公有属性
@@ -76,8 +76,7 @@ namespace TaiMingAI.DataHelper
         /// <returns>返回转换后的实体B</returns>
         public static TOT ModelToModel<T, TOT>(T tModel) where T : class, new() where TOT : class, new()
         {
-            if (tModel == null)
-                return default(TOT);
+            if (tModel == null) throw new ArgumentNullException("ModelToModel", "被转换对象为空");
             //获取被转换类型
             Type t = typeof(T);
             //获取被转换类型的公有属性

@@ -19,5 +19,10 @@ namespace TaiMingAI.WebApi.BLL
         {
             return UserDll.CreateUserDll.InternalRegisterUser(info);
         }
+
+        public List<TmingUserInfo> GetUserList()
+        {
+            return UserDll.CreateUserDll.GetUserInfoList();
+        }
     }
 }
