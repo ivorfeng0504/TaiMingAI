@@ -15,43 +15,16 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            var dll = UserDll.CreateUserDll;
-            var list = dll.InternalRegisterUser(null);
-            Console.WriteLine();
-            Console.ReadKey();
-            return;
-            LogHelper.InfoLog("进入主程序");
-            PersonSection person = ConfigurationManager.GetSection("Person") as PersonSection;
-            Console.WriteLine("name={0},age={1}", person.Age, person.Name);
-            var key = "斗战胜佛";
-            Test(key);
-            var value = CacheHelper.DoRedisString.Get(key);
-            if (string.IsNullOrEmpty(value))
-            {
-                value = "我若成佛,天下无魔";
-                CacheHelper.DoRedisString.Set(key, value);
-            }
+            var s = "ff9586";
+            var value = MD5Helper.MD5Encrypt(s);
+            var value1 = MD5Helper.MD5Encrypt(s, 16);
+            var value2 = MD5Helper.MD5Encrypt(s, 32, false);
+            var value3 = MD5Helper.MD5Encrypt(s, 16, false);
+
             Console.WriteLine(value);
-            key = "齐天大圣";
-            Test(key);
-            value = CacheHelper.DoRedisString.Get(key);
-            if (string.IsNullOrEmpty(value))
-            {
-                value = "我若成魔,佛奈我何";
-                CacheHelper.DoRedisString.Set(key, value);
-            }
-            LogHelper.InfoLog(string.Format("key:{0};value:{1}", key, value));
-            try
-            {
-                Convert.ToInt16("s");
-            }
-            catch (Exception ex)
-            {
-                LogHelper.ErrorLog("有异常出现", ex);
-                LogHelper.FatalLog("有异常出现", ex);
-            }
-            CacheHelper.DoRedisList.LPush(key + "_list", value);
-            Console.WriteLine(value);
+            Console.WriteLine(value1);
+            Console.WriteLine(value2);
+            Console.WriteLine(value3);
             Console.ReadKey();
         }
         public static void Test(string key)

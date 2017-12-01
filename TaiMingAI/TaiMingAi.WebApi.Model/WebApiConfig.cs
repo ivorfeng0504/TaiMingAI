@@ -3,6 +3,9 @@
 
 namespace TaiMingAi.WebApi.Model
 {
+    /// <summary>
+    /// 配置参数类
+    /// </summary>
     public class WebApiConfig
     {
         /// <summary>

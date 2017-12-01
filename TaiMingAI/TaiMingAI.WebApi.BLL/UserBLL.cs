@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TaiMingAi.WebApi.Model;
+using TaiMingAI.Tools;
 using TaiMingAI.WebApi.DLL;
 
 namespace TaiMingAI.WebApi.BLL
@@ -17,6 +18,7 @@ namespace TaiMingAI.WebApi.BLL
         /// <returns></returns>
         public bool InternalRegisterUser(TmingUserInfo info)
         {
+            info.Powsword = MD5Helper.MD5UPassword(info.Powsword, WebApiConst.PaswordKey);
             return UserDll.CreateUserDll.InternalRegisterUser(info);
         }
 
