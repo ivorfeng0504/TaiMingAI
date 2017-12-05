@@ -1,0 +1,7 @@
+cnpm run dev  		--运行
+cnpm run build 		--构建
+
+格式化：
+将 "vetur.format.defaultFormatter.ts": "prettier",
+更改为下面的
+"vetur.format.defaultFormatter.js": "vscode-typescript"
