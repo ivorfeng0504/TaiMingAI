@@ -30,10 +30,10 @@ namespace TaiMingAI.WebApi.Controllers
         ///错误响应消息
         /// </summary>
         /// <typeparam name="T">数据类型</typeparam>
-        /// <param name="msg">错误消息</param>
         /// <param name="data">响应数据</param>
+        /// <param name="msg">错误消息</param>
         /// <returns></returns>
-        protected ResponseMsg<T> ErrorResponseMsg<T>(string msg, T data)
+        protected ResponseMsg<T> ErrorResponseMsg<T>(T data, string msg)
         {
             var errorMsg = new ResponseMsg<T>
             {

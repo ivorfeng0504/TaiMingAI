@@ -2515,7 +2515,7 @@ namespace TaiMingAI.DBTools
                 //文件名.节点
                 string[] sqlLayers = key.Split('.');
                 //文件路径
-                string filePath = string.Format(AppDomain.CurrentDomain.BaseDirectory + @"\{0}.config", sqlLayers[0]);
+                string filePath = string.Format(AppDomain.CurrentDomain.BaseDirectory + @"\bin\config\sql\{0}.config", sqlLayers[0]);
                 //解析xml
                 XmlDocument Xdoc = new XmlDocument();
                 Xdoc.Load(filePath);

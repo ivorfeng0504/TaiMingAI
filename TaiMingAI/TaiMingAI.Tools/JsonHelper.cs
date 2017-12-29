@@ -87,7 +87,7 @@ namespace TaiMingAI.Tools
         /// <param name="json">需要反序列化的JSON字符串</param>
         /// <typeparam name="T">反序列化对象的类型</typeparam>
         /// <returns></returns>
-        public static T FromJson<T>(string json) where T : class, new()
+        public static T FromJson<T>(string json)
         {
             return FromJson<T>(json, JsonSettings);
         }
@@ -101,7 +101,7 @@ namespace TaiMingAI.Tools
         /// <param name="jsonSettings">在一个 Newtonsoft.Json.JsonSerializer 对象上指定设置，如果为null，则使用默认设置</param>
         /// <typeparam name="T">反序列化对象的类型</typeparam>
         /// <returns></returns>
-        public static T FromJson<T>(string json, JsonSerializerSettings jsonSettings) where T : class, new()
+        public static T FromJson<T>(string json, JsonSerializerSettings jsonSettings)
         {
             T result;
             try

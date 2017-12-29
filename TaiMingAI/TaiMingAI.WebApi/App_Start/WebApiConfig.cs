@@ -1,5 +1,7 @@
 ﻿using System.Net.Http.Formatting;
 using System.Web.Http;
+using System.Web.Http.Cors;
+using TaiMingAi.WebApi.Model;
 
 namespace TaiMingAI.WebApi
 {
@@ -7,8 +9,8 @@ namespace TaiMingAI.WebApi
     {
         public static void Register(HttpConfiguration config)
         {
-            // Web API 配置和服务
-
+            //跨域配置
+            config.EnableCors(new EnableCorsAttribute(WebApiConfigModel.CorsOrigins, WebApiConfigModel.CorsHeaders, WebApiConfigModel.CorsMethods));
             // Web API 路由
             config.MapHttpAttributeRoutes();
 

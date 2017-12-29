@@ -7,6 +7,7 @@ using TaiMingAI.DataHelper;
 using TaiMingAI.Tools;
 using TaiMingAI.Tools.Xml;
 using TaiMingAI.WebApi;
+using TaiMingAI.WebApi.BLL;
 using TaiMingAI.WebApi.DLL;
 
 namespace ConsoleTest
@@ -15,16 +16,16 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            var s = "ff9586";
-            var value = MD5Helper.MD5Encrypt(s);
-            var value1 = MD5Helper.MD5Encrypt(s, 16);
-            var value2 = MD5Helper.MD5Encrypt(s, 32, false);
-            var value3 = MD5Helper.MD5Encrypt(s, 16, false);
-
-            Console.WriteLine(value);
-            Console.WriteLine(value1);
-            Console.WriteLine(value2);
-            Console.WriteLine(value3);
+            //var url = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.search.catalogSug&query=妈妈";
+            //var json= WebApiHelper.GetResponseJson(url);
+            //SongBLL songBll = new SongBLL();
+            //var result = songBll.BaiduTingSearch("同班同学");
+            var s = "1";
+            var s1 = DataConvertHelper.ToDateTime(s);
+            var s2 = DataConvertHelper.ToDateTime(s, DateTime.Now);
+            var s3 = DataConvertHelper.ToInt(s);
+            var s4 = DataConvertHelper.ToInt(s,-1);
+            Console.WriteLine();
             Console.ReadKey();
         }
         public static void Test(string key)

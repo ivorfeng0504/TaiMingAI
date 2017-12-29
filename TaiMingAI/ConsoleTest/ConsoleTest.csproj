@@ -69,6 +69,10 @@
       <Project>{32101ba4-818d-4a50-900b-aefd4ecb0441}</Project>
       <Name>TaiMingAI.Tools</Name>
     </ProjectReference>
+    <ProjectReference Include="..\TaiMingAI.WebApi.BLL\TaiMingAI.WebApi.BLL.csproj">
+      <Project>{7b571173-b865-4da0-833d-786cc2d326f7}</Project>
+      <Name>TaiMingAI.WebApi.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaiMingAI.WebApi.DLL\TaiMingAI.WebApi.DLL.csproj">
       <Project>{8D42104C-6374-4C66-995B-53E24EAAFA07}</Project>
       <Name>TaiMingAI.WebApi.DLL</Name>

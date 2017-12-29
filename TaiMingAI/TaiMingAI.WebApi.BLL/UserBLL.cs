@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using TaiMingAi.WebApi.Model;
 using TaiMingAI.Tools;
 using TaiMingAI.WebApi.DLL;
 
 namespace TaiMingAI.WebApi.BLL
 {
-    public class UserBll
+    public class UserBLL
     {
         /// <summary>
         /// 内部注册用户
@@ -25,6 +21,11 @@ namespace TaiMingAI.WebApi.BLL
         public List<TmingUserInfo> GetUserList()
         {
             return UserDll.CreateUserDll.GetUserInfoList();
+        }
+
+        public TmingUserInfo GetUserInfoById(int id)
+        {
+            return UserDll.CreateUserDll.GetUserInfoById(id);
         }
     }
 }

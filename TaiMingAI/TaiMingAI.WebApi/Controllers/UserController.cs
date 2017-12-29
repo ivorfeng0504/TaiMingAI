@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Results;
 using TaiMingAi.WebApi.Model;
 using TaiMingAI.DataHelper;
 using TaiMingAI.Tools;
-using TaiMingAI.Tools.Xml;
 using TaiMingAI.WebApi.BLL;
 
 namespace TaiMingAI.WebApi.Controllers
@@ -25,11 +20,11 @@ namespace TaiMingAI.WebApi.Controllers
                 if (req == null || string.IsNullOrEmpty(req.Name) ||
                     (!CheckHelper.CheckEmail(req.Email) && !CheckHelper.CheckMobileNo(req.Mobile)))
                 {
-                    return ErrorResponseMsg("传入参数有误", false);
+                    return ErrorResponseMsg(false, "传入参数有误");
                 }
 
                 var tmingUserInfo = DataConvertHelper.ModelToModel<InternalRegisterUserReq, TmingUserInfo>(req);
-                UserBll userBll = new UserBll();
+                UserBLL userBll = new UserBLL();
                 var result = userBll.InternalRegisterUser(tmingUserInfo);
                 res = SuccessResponseMsg(result);
             }
@@ -46,13 +41,33 @@ namespace TaiMingAI.WebApi.Controllers
             ResponseMsg<List<TmingUserInfo>> res = null;
             try
             {
-                UserBll userBll = new UserBll();
+                UserBLL userBll = new UserBLL();
                 var result = userBll.GetUserList();
                 res = SuccessResponseMsg(result);
             }
             catch (Exception ex)
             {
                 res = ExceptionResponseMsg<List<TmingUserInfo>>("GetUserList", ex);
+            }
+            return res;
+        }
+
+        public ResponseMsg<TmingUserInfo> GetUserInfoById(int id)
+        {
+            ResponseMsg<TmingUserInfo> res = null;
+            try
+            {
+                if (id == 0)
+                {
+                    return ErrorResponseMsg<TmingUserInfo>(null, "用户ID不能为空||0");
+                }
+                UserBLL userBll = new UserBLL();
+                var result = userBll.GetUserInfoById(id);
+                res = result == null ? ErrorResponseMsg(result, "没有获取到用户信息") : SuccessResponseMsg(result);
+            }
+            catch (Exception ex)
+            {
+                res = ExceptionResponseMsg<TmingUserInfo>("GetUserInfoById", ex);
             }
             return res;
         }
