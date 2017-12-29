@@ -5,3 +5,6 @@ cnpm run build 		--构建
 将 "vetur.format.defaultFormatter.ts": "prettier",
 更改为下面的
 "vetur.format.defaultFormatter.js": "vscode-typescript"
+
+ // 在函数参数括号前定义空格处理。需要 TypeScript >= 2.1.5。
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": false,
