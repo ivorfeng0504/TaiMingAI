@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Diagnostics;
 using TaiMingAi.WebApi.Model;
+using TaiMingAi.WebApi.Model.Song;
 using TaiMingAI.Caches;
 using TaiMingAI.DataHelper;
 using TaiMingAI.Tools;
@@ -16,15 +17,8 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            //var url = "http://tingapi.ting.baidu.com/v1/restserver/ting?method=baidu.ting.search.catalogSug&query=妈妈";
-            //var json= WebApiHelper.GetResponseJson(url);
-            //SongBLL songBll = new SongBLL();
-            //var result = songBll.BaiduTingSearch("同班同学");
-            var s = "1";
-            var s1 = DataConvertHelper.ToDateTime(s);
-            var s2 = DataConvertHelper.ToDateTime(s, DateTime.Now);
-            var s3 = DataConvertHelper.ToInt(s);
-            var s4 = DataConvertHelper.ToInt(s,-1);
+            SongBLL songBll = new SongBLL();
+            var result = songBll.BaiduTingSearch("双节棍");
             Console.WriteLine();
             Console.ReadKey();
         }

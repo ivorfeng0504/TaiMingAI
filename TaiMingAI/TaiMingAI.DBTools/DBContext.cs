@@ -308,30 +308,19 @@ namespace TaiMingAI.DBTools
         public int ExecuteNonQuery(SqlConnection connection, CommandType commandType, string commandText, params SqlParameter[] commandParameters)
         {
             if (connection == null) throw new ArgumentNullException("connection");
-            try
-            {
-                // 创建SqlCommand命令,并进行预处理   
-                SqlCommand cmd = new SqlCommand();
-                PrepareCommand(cmd, connection, null, commandType, commandText, commandParameters, out bool mustCloseConnection);
 
-                // Finally, execute the command   
-                int retval = cmd.ExecuteNonQuery();
+            // 创建SqlCommand命令,并进行预处理   
+            SqlCommand cmd = new SqlCommand();
+            PrepareCommand(cmd, connection, null, commandType, commandText, commandParameters, out bool mustCloseConnection);
 
-                // 清除参数,以便再次使用.   
-                cmd.Parameters.Clear();
-                if (mustCloseConnection)
-                    connection.Close();
-                return retval;
-            }
-            catch (Exception ex)
-            {
-                LogHelper.FatalLog("ExecuteNonQuery方法异常", ex);
-                throw new ArgumentNullException("SqlHelper:ExecuteNonQuery方法异常", ex);
-            }
-            finally
-            {
+            // Finally, execute the command   
+            int retval = cmd.ExecuteNonQuery();
+
+            // 清除参数,以便再次使用.   
+            cmd.Parameters.Clear();
+            if (mustCloseConnection)
                 connection.Close();
-            }
+            return retval;
         }
 
         /// <summary>   
@@ -561,34 +550,21 @@ namespace TaiMingAI.DBTools
         {
             if (connection == null) throw new ArgumentNullException("connection");
             bool mustCloseConnection = true;
-            try
+            // 预处理   
+            SqlCommand cmd = new SqlCommand();
+            PrepareCommand(cmd, connection, null, commandType, commandText, commandParameters, out mustCloseConnection);
+
+            // 创建SqlDataAdapter和DataSet.   
+            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
             {
-                // 预处理   
-                SqlCommand cmd = new SqlCommand();
-                PrepareCommand(cmd, connection, null, commandType, commandText, commandParameters, out mustCloseConnection);
+                DataSet ds = new DataSet();
 
-                // 创建SqlDataAdapter和DataSet.   
-                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                {
-                    DataSet ds = new DataSet();
+                // 填充DataSet.   
+                da.Fill(ds);
 
-                    // 填充DataSet.   
-                    da.Fill(ds);
-
-                    cmd.Parameters.Clear();
-
-                    return ds;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.FatalLog("ExecuteDataset方法异常", ex);
-                throw new ArgumentNullException("SqlHelper:ExecuteDataset方法异常", ex);
-            }
-            finally
-            {
-                if (mustCloseConnection)
-                    connection.Close();
+                cmd.Parameters.Clear();
+                if (mustCloseConnection) connection.Close();
+                return ds;
             }
         }
 
@@ -818,34 +794,21 @@ namespace TaiMingAI.DBTools
         {
             if (connection == null) throw new ArgumentNullException("connection");
             bool mustCloseConnection = true;
-            try
+            // 预处理   
+            SqlCommand cmd = new SqlCommand();
+            PrepareCommand(cmd, connection, null, commandType, commandText, commandParameters, out mustCloseConnection);
+
+            // 创建SqlDataAdapter和DataSet.   
+            using (SqlDataAdapter da = new SqlDataAdapter(cmd))
             {
-                // 预处理   
-                SqlCommand cmd = new SqlCommand();
-                PrepareCommand(cmd, connection, null, commandType, commandText, commandParameters, out mustCloseConnection);
+                DataTable dt = new DataTable();
 
-                // 创建SqlDataAdapter和DataSet.   
-                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                {
-                    DataTable dt = new DataTable();
+                // 填充DataSet.   
+                da.Fill(dt);
 
-                    // 填充DataSet.   
-                    da.Fill(dt);
-
-                    cmd.Parameters.Clear();
-
-                    return dt;
-                }
-            }
-            catch (Exception ex)
-            {
-                LogHelper.FatalLog("ExecuteDataset方法异常", ex);
-                throw new ArgumentNullException("SqlHelper:ExecuteDataset方法异常", ex);
-            }
-            finally
-            {
-                if (mustCloseConnection)
-                    connection.Close();
+                cmd.Parameters.Clear();
+                if (mustCloseConnection) connection.Close();
+                return dt;
             }
         }
 
@@ -1350,7 +1313,7 @@ namespace TaiMingAI.DBTools
         public object ExecuteScalar(SqlConnection connection, CommandType commandType, string commandText)
         {
             // 执行参数为空的方法   
-            return ExecuteScalar(connection, commandType, commandText, (SqlParameter[])null);
+            return ExecuteScalar(connection, commandType, commandText, null);
         }
 
         /// <summary>   
@@ -1369,31 +1332,19 @@ namespace TaiMingAI.DBTools
         {
             if (connection == null) throw new ArgumentNullException("connection");
             bool mustCloseConnection = false;
-            try
-            {
-                // 创建SqlCommand命令,并进行预处理   
-                SqlCommand cmd = new SqlCommand();
 
-                PrepareCommand(cmd, connection, null, commandType, commandText, commandParameters, out mustCloseConnection);
+            // 创建SqlCommand命令,并进行预处理   
+            SqlCommand cmd = new SqlCommand();
 
-                // 执行SqlCommand命令,并返回结果.   
-                object retval = cmd.ExecuteScalar();
+            PrepareCommand(cmd, connection, null, commandType, commandText, commandParameters, out mustCloseConnection);
 
-                // 清除参数,以便再次使用.   
-                cmd.Parameters.Clear();
+            // 执行SqlCommand命令,并返回结果.   
+            object retval = cmd.ExecuteScalar();
 
-                return retval;
-            }
-            catch (Exception ex)
-            {
-                LogHelper.FatalLog("ExecuteScalar方法异常", ex);
-                throw new ArgumentNullException("SqlHelper:ExecuteScalar方法异常", ex);
-            }
-            finally
-            {
-                if (mustCloseConnection)
-                    connection.Close();
-            }
+            // 清除参数,以便再次使用.   
+            cmd.Parameters.Clear();
+            if (mustCloseConnection) connection.Close();
+            return retval;
         }
 
         /// <summary>   

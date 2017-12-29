@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace TaiMingAI.Tools
 {
@@ -130,5 +132,38 @@ namespace TaiMingAI.Tools
             return result;
         }
         #endregion
+        /// <summary>
+        /// 多层级json反序列化
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="json">需要反序列化的JSON字符串</param>
+        /// <returns></returns>
+        public static T FromManyLevelJson<T>(string json) where T : class
+        {
+            try
+            {
+                JObject jsonObj = JObject.Parse(json);
+                Type t = typeof(T);
+                var model = Activator.CreateInstance(t) as T;
+
+                PropertyInfo[] propertyInfos = t.GetProperties();
+                foreach (PropertyInfo prop in propertyInfos)
+                {
+                    if (prop.PropertyType.IsClass) {
+                    }
+                    else
+                    {
+                        prop.SetValue(model, Convert.ChangeType(jsonObj[prop.Name], prop.PropertyType));
+                    }
+                }
+                return model;
+            }
+            catch (Exception ex)
+            {
+
+                LogHelper.ErrorLog("FromManyLevelJson反序列化异常", ex);
+                return default(T);
+            }
+        }
     }
 }

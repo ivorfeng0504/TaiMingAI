@@ -50,7 +50,7 @@ namespace TaiMingAI.Tools
                 if (response.IsSuccessStatusCode)
                 {
                     var responseStr = response.Content.ReadAsStringAsync().Result;
-                    T t = JsonHelper.FromJson<T>(responseStr); ;
+                    T t = JsonHelper.FromJson<T>(responseStr);
                     return t;
                 }
                 else

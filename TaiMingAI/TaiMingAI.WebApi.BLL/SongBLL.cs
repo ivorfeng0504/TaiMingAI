@@ -12,12 +12,13 @@ namespace TaiMingAI.WebApi.BLL
     public class SongBLL
     {
 
-        public List<SearchSongResult> BaiduTingSearch(string search)
+        public SearchSongResult BaiduTingSearch(string search)
         {
             var dic = new Dictionary<string, string>();
             dic.Add("query", search);
             var url = GetUrlByMethod(SongMethod.Search, dic);
-            return WebApiHelper.GetResponseJson<List<SearchSongResult>>(url);
+
+            return WebApiHelper.GetResponseJson<SearchSongResult>(url);
         }
         private string GetUrlByMethod(string method, Dictionary<string, string> dic)
         {
