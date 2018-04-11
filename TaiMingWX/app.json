@@ -1,0 +1,34 @@
+{
+  "pages":[
+    "pages/welcome/welcome",
+    "pages/index/index",
+    "pages/task/create/create",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "竭诚为您服务",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "backgroundColor": "#fbfbfb",
+    "borderStyle": "white",
+    "selectedColor": "#09bb07",
+    "color": "#aaa",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/common/home.png",
+        "selectedIconPath": "images/common/home.png"
+      },
+      {
+        "pagePath": "pages/task/create/create",
+        "text": "发现",
+        "iconPath": "images/common/faxian.png",
+        "selectedIconPath": "images/common/faxian.png"
+      }
+    ]
+  }
+}

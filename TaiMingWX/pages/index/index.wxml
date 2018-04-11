@@ -1,0 +1,14 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- <image bindtap='click' src='{{homeImages[0]}}'></image> -->
+  <swiper indicator-dots="{{true}}" autoplay="{{false}}" interval="{{1000}}" duration="{{500}}" circular="{{true}}">
+    <swiper-item>
+      <image bindtap='click' src='{{homeImages[0]}}'></image>
+    </swiper-item>
+    <!-- <block wx:for="{{homeImages}}" wx:key="*this">
+      <swiper-item>
+        <image bindtap='click' src='{{item}}'></image>
+      </swiper-item>
+    </block> -->
+  </swiper>
+</view>
