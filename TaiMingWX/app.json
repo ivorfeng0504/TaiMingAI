@@ -14,7 +14,7 @@
   "tabBar": {
     "backgroundColor": "#fbfbfb",
     "borderStyle": "white",
-    "selectedColor": "#09bb07",
+    "selectedColor": "#09bb07", 
     "color": "#aaa",
     "list": [
       {
@@ -24,7 +24,7 @@
         "selectedIconPath": "images/common/home.png"
       },
       {
-        "pagePath": "pages/task/create/create",
+        "pagePath": "pages/logs/logs",
         "text": "发现",
         "iconPath": "images/common/faxian.png",
         "selectedIconPath": "images/common/faxian.png"
