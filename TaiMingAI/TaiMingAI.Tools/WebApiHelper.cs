@@ -34,7 +34,30 @@ namespace TaiMingAI.Tools
                 throw new Exception(sError);
             }
         }
+        public static string GetResponseJson(string url, Dictionary<string, string> haders)
+        {
+            HttpClient httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            if (haders != null && haders.Keys.Count > 0)
+            {
+                foreach (var item in haders)
+                {
+                    httpClient.DefaultRequestHeaders.Add(item.Key, item.Value);
+                }
+            }
+            HttpResponseMessage response = httpClient.GetAsync(url).Result;
 
+            if (response.IsSuccessStatusCode)
+            {
+                string responseJson = response.Content.ReadAsStringAsync().Result;
+                return responseJson;
+            }
+            else
+            {
+                string sError = response.Content.ReadAsStringAsync().Result;
+                throw new Exception(sError);
+            }
+        }
         /// <summary>
         /// 调用WebAPI的get方法
         /// </summary>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Web.Http;
+using System.Web.Http.Results;
 using TaiMingAi.WebApi.Model.Song;
+using TaiMingAI.WebApi.App_Start;
 using TaiMingAI.WebApi.BLL;
 
 namespace TaiMingAI.WebApi.Controllers
@@ -8,7 +10,8 @@ namespace TaiMingAI.WebApi.Controllers
     public class SongController : BaseController
     {
         [HttpGet]
-        public ResponseMsg<SearchSongResult> BaiduTingSearch(string search)
+        [RequestAuthorize]
+        public ApiResult<SearchSongResult> BaiduTingSearch(string search)
         {
             try
             {
@@ -25,5 +28,6 @@ namespace TaiMingAI.WebApi.Controllers
                 return ExceptionResponseMsg<SearchSongResult>("BaiduTingSearch", ex);
             }
         }
+
     }
 }

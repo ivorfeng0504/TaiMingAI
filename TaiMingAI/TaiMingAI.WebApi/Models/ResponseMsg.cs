@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace TaiMingAI.WebApi
 {
@@ -25,7 +26,7 @@ namespace TaiMingAI.WebApi
     /// Api统一返回类型
     /// </summary>
     /// <typeparam name="T">响应数据类型</typeparam>
-    public class ResponseMsg<T>
+    public class ApiResult<T>
     {
         /// <summary>
         /// 处理结果
@@ -46,6 +47,6 @@ namespace TaiMingAI.WebApi
         /// <summary>
         /// 响应数据
         /// </summary>
-        public T ResponseData { get; set; }
+        public T ResultData { get; set; }
     }
 }

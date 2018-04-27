@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Security;
 using TaiMingAi.WebApi.Model;
 using TaiMingAI.DataHelper;
 using TaiMingAI.Tools;
+using TaiMingAI.WebApi.App_Start;
 using TaiMingAI.WebApi.BLL;
+using TaiMingAI.WebApi.Models;
 
 namespace TaiMingAI.WebApi.Controllers
 {
@@ -12,9 +15,9 @@ namespace TaiMingAI.WebApi.Controllers
     {
         #region 内部注册用户API
         [HttpGet]
-        public ResponseMsg<bool> InternalRegisterUser([FromUri] InternalRegisterUserReq req)
+        public ApiResult<bool> InternalRegisterUser([FromUri] InternalRegisterUserReq req)
         {
-            ResponseMsg<bool> res = null;
+            ApiResult<bool> res = null;
             try
             {
                 if (req == null || string.IsNullOrEmpty(req.Name) ||
@@ -36,9 +39,32 @@ namespace TaiMingAI.WebApi.Controllers
         }
         #endregion
 
-        public ResponseMsg<List<TmingUserInfo>> GetUserList()
+        [HttpGet]
+
+        public ApiResult<LoginDoRespons> LoginDo([FromUri] LoginDoRequest model)
         {
-            ResponseMsg<List<TmingUserInfo>> res = null;
+            try
+            {
+                UserBLL userBll = new UserBLL();
+                LoginDoRespons result = userBll.LoginDo(model);
+                if (result == null)
+                {
+                    return ErrorResponseMsg(result, "登录失败！");
+                }
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(0, model.LoginName, DateTime.Now,
+                            DateTime.Now.AddHours(1), true, string.Format("{0}&{1}", model.LoginName, model.Password),
+                            FormsAuthentication.FormsCookiePath);
+                result.Ticket = FormsAuthentication.Encrypt(ticket);
+                return SuccessResponseMsg(result);
+            }
+            catch (Exception ex)
+            {
+                return ExceptionResponseMsg<LoginDoRespons>("LoginDo", ex);
+            }
+        }
+        public ApiResult<List<TmingUserInfo>> GetUserList()
+        {
+            ApiResult<List<TmingUserInfo>> res = null;
             try
             {
                 UserBLL userBll = new UserBLL();
@@ -52,9 +78,10 @@ namespace TaiMingAI.WebApi.Controllers
             return res;
         }
 
-        public ResponseMsg<TmingUserInfo> GetUserInfoById(int id)
+        [RequestAuthorize]
+        public ApiResult<TmingUserInfo> GetUserInfoById(int id)
         {
-            ResponseMsg<TmingUserInfo> res = null;
+            ApiResult<TmingUserInfo> res = null;
             try
             {
                 if (id == 0)
@@ -71,5 +98,6 @@ namespace TaiMingAI.WebApi.Controllers
             }
             return res;
         }
+
     }
 }

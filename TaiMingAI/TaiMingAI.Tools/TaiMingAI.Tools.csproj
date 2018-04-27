@@ -50,9 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CheckHelper.cs" />
+    <Compile Include="EncryptHelper.cs" />
     <Compile Include="JsonHelper.cs" />
     <Compile Include="LogHelper.cs" />
     <Compile Include="MD5Helper.cs" />
+    <Compile Include="TimestampHelper.cs" />
     <Compile Include="WebApiHelper.cs" />
     <Compile Include="XmlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

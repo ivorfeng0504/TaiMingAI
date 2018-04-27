@@ -16,13 +16,13 @@ namespace TaiMingAI.WebApi.Controllers
         /// <typeparam name="T">数据类型</typeparam>
         /// <param name="data">响应数据</param>
         /// <returns></returns>
-        protected ResponseMsg<T> SuccessResponseMsg<T>(T data)
+        protected ApiResult<T> SuccessResponseMsg<T>(T data)
         {
-            var sucessMsg = new ResponseMsg<T>
+            var sucessMsg = new ApiResult<T>
             {
                 ResultEnum = ResultEnum.success,
                 Msg = "接口处理成功",
-                ResponseData = data
+                ResultData = data
             };
             return sucessMsg;
         }
@@ -33,13 +33,13 @@ namespace TaiMingAI.WebApi.Controllers
         /// <param name="data">响应数据</param>
         /// <param name="msg">错误消息</param>
         /// <returns></returns>
-        protected ResponseMsg<T> ErrorResponseMsg<T>(T data, string msg)
+        protected ApiResult<T> ErrorResponseMsg<T>(T data, string msg)
         {
-            var errorMsg = new ResponseMsg<T>
+            var errorMsg = new ApiResult<T>
             {
                 ResultEnum = ResultEnum.error,
                 Msg = "接口处理未成功",
-                ResponseData = data,
+                ResultData = data,
                 ErrorMsg = msg,
             };
             return errorMsg;
@@ -51,15 +51,15 @@ namespace TaiMingAI.WebApi.Controllers
         /// <param name="actionName">接口名称</param>
         /// <param name="ex">异常信息</param>
         /// <returns></returns>
-        protected ResponseMsg<T> ExceptionResponseMsg<T>(string actionName, Exception ex)
+        protected ApiResult<T> ExceptionResponseMsg<T>(string actionName, Exception ex)
         {
             LogHelper.FatalLog("接口：" + actionName + "异常", ex);
-            var exMsg = new ResponseMsg<T>
+            var exMsg = new ApiResult<T>
             {
                 ResultEnum = ResultEnum.exception,
                 ExceptionMsg = ex.Message,
                 Msg = "接口处理异常",
-                ResponseData = default(T)
+                ResultData = default(T)
             };
             return exMsg;
         }

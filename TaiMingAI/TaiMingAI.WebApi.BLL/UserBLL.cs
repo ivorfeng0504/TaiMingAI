@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TaiMingAi.WebApi.Model;
 using TaiMingAI.Tools;
 using TaiMingAI.WebApi.DLL;
+using TaiMingAI.WebApi.Models;
 
 namespace TaiMingAI.WebApi.BLL
 {
@@ -26,6 +28,15 @@ namespace TaiMingAI.WebApi.BLL
         public TmingUserInfo GetUserInfoById(int id)
         {
             return UserDll.CreateUserDll.GetUserInfoById(id);
+        }
+
+        public LoginDoRespons LoginDo(LoginDoRequest model)
+        {
+            return new LoginDoRespons
+            {
+                UserName = "齐天大圣",
+                Phone = 18888888888
+            };
         }
     }
 }
