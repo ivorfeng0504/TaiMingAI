@@ -1,8 +1,8 @@
 {
   "pages":[
+    "pages/task/create/create",
     "pages/welcome/welcome",
     "pages/index/index",
-    "pages/task/create/create",
     "pages/logs/logs"
   ],
   "window":{

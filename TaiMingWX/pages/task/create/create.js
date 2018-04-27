@@ -5,11 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    views: ["1", "2", "3"],
-    visitTime:["及时","工作日","周末","随时"],
-    visitTimeIndex:0,
-
-    imageList: [],
+    visitTime: ["及时", "工作日", "周末", "随时"],
+    allInfo:"",
+    formData: {
+      name: "",//用户姓名
+      phone: "",//联系电话
+      address: "",//联系地址
+      visitTimeIndex: 0,//服务时间
+      taskImages: [],//任务图片
+      taskContent: "",//任务内容
+      isAgree: false,//阅读并同意
+    }
   },
 
   /**
@@ -68,9 +74,9 @@ Page({
 
   },
   /*选择上门时间*/
-  visitTimeChange:function(e)  {
+  visitTimeChange: function (e) {
     this.setData({
-      visitTimeIndex: e.detail.value
+      "formData.visitTimeIndex": e.detail.value
     })
   },
   /*上传图片*/
@@ -84,7 +90,7 @@ Page({
       success: function (res) {
         console.log(res)
         that.setData({
-          imageList: res.tempFilePaths
+          "formData.taskImages": res.tempFilePaths
         })
       }
     })
@@ -95,5 +101,21 @@ Page({
       current: current,
       urls: this.data.imageList
     })
+  },
+  /*阅读并同意*/
+  bindAgreeChange: function (e) {
+    this.setData({
+      'formData.isAgree': !!e.detail.value.length
+    });
+  },
+  bindSubmitTask:function(e){
+    this.data.formData.name = e.detail.value.name;
+    this.data.formData.phone = e.detail.value.phone;
+    this.data.formData.address = e.detail.value.address;
+    this.data.formData.taskContent = e.detail.value.taskContent;
+    var str = JSON.stringify(this.data.formData);
+    this.setData({
+      allInfo: str
+    });
   }
 })
