@@ -132,7 +132,38 @@ namespace TaiMingAI.Tools
                 }
             }
         }
-
+        /// <summary>
+        /// 将json数据Post到指定Uri
+        /// </summary>
+        /// <param name="uri">链接</param>
+        /// <param name="json">数据</param>
+        /// <returns>json字符串</returns>
+        public static string PostResponseJson(string uri, string postJson, Dictionary<string, string> dicHeaders)
+        {
+            using (HttpClient httpClient = new HttpClient())
+            {
+                HttpContent httpContent = new StringContent(postJson);
+                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                if(dicHeaders!=null && dicHeaders.Keys.Count>0)
+                {
+                    foreach (var item in dicHeaders)
+                    {
+                        httpContent.Headers.Add(item.Key, item.Value);
+                    }
+                }
+                var response = httpClient.PostAsync(uri, httpContent).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseJson = response.Content.ReadAsStringAsync().Result;
+                    return responseJson;
+                }
+                else
+                {
+                    string sError = response.Content.ReadAsStringAsync().Result;
+                    throw new Exception(sError);
+                }
+            }
+        }
         #region  TrackID
         /// <summary>
         /// 将json数据Post到指定Uri 带TrackId

@@ -10,7 +10,7 @@ namespace TaiMingAI.WebApi.Controllers
     public class SongController : BaseController
     {
         [HttpGet]
-        [RequestAuthorize]
+        [AuthenticationAttribute]
         public ApiResult<SearchSongResult> BaiduTingSearch(string search)
         {
             try

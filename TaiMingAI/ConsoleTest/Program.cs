@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using TaiMingAi.WebApi.Model;
 using TaiMingAI.Caches;
 using TaiMingAI.Tools;
 using TaiMingAI.WebApi;
@@ -13,7 +14,7 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            var appId = "1001";
+            var appId = "1002";
             var key = "D9B0C2E7-B25E-43AC-B69B-FAF7AA4DAADB";
             var timestamp = TimestampHelper.GetNowTimestampOfJs();
             var sign = appId + timestamp + key;
@@ -24,14 +25,16 @@ namespace ConsoleTest
                 {"time",timestamp.ToString() },
                 {"sign",sign }
             };
-            var url = "http://api.taiming.com/api/User/LoginDo?LoginName=admin&Password=123456";
-            var s = WebApiHelper.GetResponseJson(url, headers);
-            var response = JsonHelper.FromJson<ApiResult<LoginDoRespons>>(s);
-            url = "http://api.taiming.com/api/Song/BaiduTingSearch?search=123";
-            var t ="";
-            t = response.ResultData.Ticket;
-            headers.Add("Authorization", "BasicAuth " + t);
-            s = WebApiHelper.GetResponseJson(url, headers);
+
+            var url = "http://api.taiming.com/api/Task/Create";
+            var request = new CreateTaskRequest
+            {
+                TaksName = "first task",
+                UserName = "admin",
+                Phone = 18888888888
+            };
+            var s = WebApiHelper.PostResponseJson(url, JsonHelper.ToJson(request), headers);
+
             //SongBLL songBll = new SongBLL();
             //var result = songBll.BaiduTingSearch("双节棍");
             Console.Write(s);

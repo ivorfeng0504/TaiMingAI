@@ -6,7 +6,7 @@ Page({
    */
   data: {
     visitTime: ["及时", "工作日", "周末", "随时"],
-    allInfo:"",
+    allInfo: "",
     formData: {
       name: "",//用户姓名
       phone: "",//联系电话
@@ -108,14 +108,25 @@ Page({
       'formData.isAgree': !!e.detail.value.length
     });
   },
-  bindSubmitTask:function(e){
+  bindSubmitTask: function (e) {
     this.data.formData.name = e.detail.value.name;
     this.data.formData.phone = e.detail.value.phone;
     this.data.formData.address = e.detail.value.address;
     this.data.formData.taskContent = e.detail.value.taskContent;
-    var str = JSON.stringify(this.data.formData);
-    this.setData({
-      allInfo: str
-    });
+    console.log("x");
+    var header = {
+      "appId": 1001,
+      "time": 123,
+      "sign": "122"
+    };
+    wx.request({
+      url: 'http://api.taiming.com/api/Task/Create',
+      data: this.data.formData,
+      header: header,
+      method: "POST",
+      success: function (data, statusCode) {
+        console.log(JSON.stringify(data) + "," + statusCode);
+      }
+    })
   }
 })

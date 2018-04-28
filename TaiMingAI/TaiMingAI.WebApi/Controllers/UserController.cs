@@ -78,7 +78,7 @@ namespace TaiMingAI.WebApi.Controllers
             return res;
         }
 
-        [RequestAuthorize]
+        [AuthenticationAttribute]
         public ApiResult<TmingUserInfo> GetUserInfoById(int id)
         {
             ApiResult<TmingUserInfo> res = null;
