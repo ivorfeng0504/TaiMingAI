@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAi.WebApi.Model", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.DBTools", "TaiMingAI.DBTools\TaiMingAI.DBTools.csproj", "{4EABAC04-D30D-4AFB-AD34-D10EF766A651}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaiMingAI.Manage", "Manage\TaiMingAI.Manage.csproj", "{D0CDA6F3-CA8A-4544-A749-6D6CB942986D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.Manager", "TaiMingAI.Manager\TaiMingAI.Manager.csproj", "{66CD7801-60FE-4587-A5F7-56E2B45C50DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,10 +67,10 @@ Global
 		{4EABAC04-D30D-4AFB-AD34-D10EF766A651}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4EABAC04-D30D-4AFB-AD34-D10EF766A651}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4EABAC04-D30D-4AFB-AD34-D10EF766A651}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D0CDA6F3-CA8A-4544-A749-6D6CB942986D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0CDA6F3-CA8A-4544-A749-6D6CB942986D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0CDA6F3-CA8A-4544-A749-6D6CB942986D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0CDA6F3-CA8A-4544-A749-6D6CB942986D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66CD7801-60FE-4587-A5F7-56E2B45C50DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66CD7801-60FE-4587-A5F7-56E2B45C50DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66CD7801-60FE-4587-A5F7-56E2B45C50DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66CD7801-60FE-4587-A5F7-56E2B45C50DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
