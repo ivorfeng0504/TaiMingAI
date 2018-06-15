@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>个股三分钟管理后台</title>
+    @Styles.Render("~/bundles/layuicss")
+</head>
+<body class="main_body">
+    <div class="layui-layout layui-layout-admin">
+        @Html.Partial("_LayoutTop")
+        @Html.Partial("_LayoutLeft")
+        <div class="layui-body layui-form">
+            <div class="layui-tab mag0 layadmin-pagetabs" lay-filter="bodyTab" id="top_tabs_box">
+                <ul class="layui-tab-title top_tab" id="top_tabs">
+                    <li class="layui-this" lay-id="">
+                        <i class="layui-icon">&#xe68e;</i>
+                        <cite></cite>
+                    </li>
+                </ul>
+                <ul class="layui-nav closeBox">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;"><i class="layui-icon">&#xe61a;</i></a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;" class="refresh refreshThis">
+                                    <i class="layui-icon">&#xe669;</i>刷新当前
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" class="closePageOther">
+                                    <i class="layui-icon">&#x1006;</i>关闭其他
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" class="closePageAll">
+                                    <i class="layui-icon">&#x1007;</i>关闭全部
+                                </a>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+                <div class="layui-tab-content clildFrame">
+                    <div class="layui-tab-item layui-show">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+        @Html.Partial("_LayoutFooter")
+    </div>
+    <input type="hidden" id="navberJson" value="@ViewBag.NavBar" />
+    @Scripts.Render("~/bundles/layuijs")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
