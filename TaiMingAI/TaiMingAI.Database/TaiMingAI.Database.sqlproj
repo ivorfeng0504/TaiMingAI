@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{05626831-16bf-4eec-8c52-c80087fb7393}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql100DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql140DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -59,10 +59,12 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="User" />
+    <Folder Include="Manager" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="User\TmingUserInfo.sql" />
+    <Build Include="Manager\NavBar.sql" />
+    <Build Include="Manager\Role.sql" />
+    <Build Include="Manager\Administrator.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="tableToModel.sql" />

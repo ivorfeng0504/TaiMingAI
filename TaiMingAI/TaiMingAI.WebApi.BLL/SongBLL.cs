@@ -22,7 +22,7 @@ namespace TaiMingAI.WebApi.BLL
         }
         private string GetUrlByMethod(string method, Dictionary<string, string> dic)
         {
-            var url = WebApiConfigModel.BaiduSongApi + "?method=" + method;
+            var url = WebApiConfig.BaiduSongApi + "?method=" + method;
             if (dic != null && dic.Count() > 0)
             {
                 foreach (var item in dic)

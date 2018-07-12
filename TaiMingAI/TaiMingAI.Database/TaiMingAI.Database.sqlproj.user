@@ -3,7 +3,7 @@
   <PropertyGroup>
     <StartupScript>(空白)</StartupScript>
     <StartAction>StartNone</StartAction>
-    <TargetConnectionString>Data Source=.;Initial Catalog=TaiMingUser;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True</TargetConnectionString>
-    <TargetDatabase>TaiMingUser</TargetDatabase>
+    <TargetConnectionString>Data Source=.;Initial Catalog=TaiMingManager;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True</TargetConnectionString>
+    <TargetDatabase>TaiMingManager</TargetDatabase>
   </PropertyGroup>
 </Project>

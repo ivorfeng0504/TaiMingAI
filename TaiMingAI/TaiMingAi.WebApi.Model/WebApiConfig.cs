@@ -6,7 +6,7 @@ namespace TaiMingAi.WebApi.Model
     /// <summary>
     /// 配置参数类
     /// </summary>
-    public class WebApiConfigModel
+    public class WebApiConfig
     {
         /// <summary>
         /// User数据库连接字符串

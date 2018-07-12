@@ -81,9 +81,9 @@
       <Project>{7b571173-b865-4da0-833d-786cc2d326f7}</Project>
       <Name>TaiMingAI.WebApi.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TaiMingAI.WebApi.DLL\TaiMingAI.WebApi.DLL.csproj">
+    <ProjectReference Include="..\TaiMingAI.WebApi.DLL\TaiMingAI.WebApi.DAL.csproj">
       <Project>{8D42104C-6374-4C66-995B-53E24EAAFA07}</Project>
-      <Name>TaiMingAI.WebApi.DLL</Name>
+      <Name>TaiMingAI.WebApi.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\TaiMingAi.WebApi.Model\TaiMingAi.WebApi.Model.csproj">
       <Project>{2DD3F0ED-E32C-431C-BC89-1D49764FD5F8}</Project>

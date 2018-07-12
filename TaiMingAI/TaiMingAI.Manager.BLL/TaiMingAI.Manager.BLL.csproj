@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8316EA22-ACC7-4E5B-834E-0CF3E14FD665}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TaiMingAI.Manager.BLL</RootNamespace>
+    <AssemblyName>TaiMingAI.Manager.BLL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\TaiMingAI.Caches\Redis\dll\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ManagerBll\AdminBll.cs" />
+    <Compile Include="ManagerBll\RoleBll.cs" />
+    <Compile Include="Manager\NavbarManager.cs" />
+    <Compile Include="Manager\AdminManager.cs" />
+    <Compile Include="Manager\RoleManager.cs" />
+    <Compile Include="ManagerBll\NavbarBll.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TaiMingAI.DBTools\TaiMingAI.DBTools.csproj">
+      <Project>{4EABAC04-D30D-4AFB-AD34-D10EF766A651}</Project>
+      <Name>TaiMingAI.DBTools</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaiMingAI.Manager.DAL\TaiMingAI.Manager.DAL.csproj">
+      <Project>{42ACA76C-6B24-4342-B001-1BA02FD58856}</Project>
+      <Name>TaiMingAI.Manager.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaiMingAI.Manager.Model\TaiMingAI.Manager.Model.csproj">
+      <Project>{5fc6ef49-5e59-493e-bb09-b82ca045c530}</Project>
+      <Name>TaiMingAI.Manager.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaiMingAI.Tools\TaiMingAI.Tools.csproj">
+      <Project>{32101ba4-818d-4a50-900b-aefd4ecb0441}</Project>
+      <Name>TaiMingAI.Tools</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

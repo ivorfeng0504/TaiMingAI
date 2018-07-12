@@ -1,6 +1,6 @@
 /*
-	@Author: 驊驊龔頾
-	@Time: 2017-10
+	@Author: 齐天大圣
+	@Time: 2018-07
 	@Tittle: bodyTab
 	@Description: 点击对应按钮添加新窗口
 */
@@ -36,7 +36,7 @@ layui.define(["element", "jquery"], function (exports) {
                 ulHtml += '<a>';
                 if (data[i].icon != undefined && data[i].icon != '') {
                     if (data[i].icon.indexOf("icon-") != -1) {
-                        ulHtml += '<i class="seraph ' + data[i].icon + '" data-icon="' + data[i].icon + '"></i>';
+                        ulHtml += '<i class="seraph layui-icon ' + data[i].icon + '" data-icon="' + data[i].icon + '"></i>';
                     } else {
                         ulHtml += '<i class="layui-icon" data-icon="' + data[i].icon + '">' + data[i].icon + '</i>';
                     }
@@ -46,14 +46,14 @@ layui.define(["element", "jquery"], function (exports) {
                 ulHtml += '</a>';
                 ulHtml += '<dl class="layui-nav-child">';
                 for (var j = 0; j < data[i].children.length; j++) {
-                    if (data[i].children[j].target == "_blank") {
-                        ulHtml += '<dd><a data-url="' + data[i].children[j].href + '" target="' + data[i].children[j].target + '">';
+                    if (data[i].children[j].target) {
+                        ulHtml += '<dd><a data-url="' + data[i].children[j].href + '" target="_blank">';
                     } else {
                         ulHtml += '<dd><a data-url="' + data[i].children[j].href + '">';
                     }
                     if (data[i].children[j].icon != undefined && data[i].children[j].icon != '') {
                         if (data[i].children[j].icon.indexOf("icon-") != -1) {
-                            ulHtml += '<i class="seraph ' + data[i].children[j].icon + '" data-icon="' + data[i].children[j].icon + '"></i>';
+                            ulHtml += '<i class="seraph layui-icon ' + data[i].children[j].icon + '" data-icon="' + data[i].children[j].icon + '"></i>';
                         } else {
                             ulHtml += '<i class="layui-icon" data-icon="' + data[i].children[j].icon + '">' + data[i].children[j].icon + '</i>';
                         }
@@ -62,14 +62,14 @@ layui.define(["element", "jquery"], function (exports) {
                 }
                 ulHtml += "</dl>";
             } else {
-                if (data[i].target == "_blank") {
-                    ulHtml += '<a data-url="' + data[i].href + '" target="' + data[i].target + '">';
+                if (data[i].target) {
+                    ulHtml += '<a data-url="' + data[i].href + '" target="_blank">';
                 } else {
                     ulHtml += '<a data-url="' + data[i].href + '">';
                 }
                 if (data[i].icon != undefined && data[i].icon != '') {
                     if (data[i].icon.indexOf("icon-") != -1) {
-                        ulHtml += '<i class="seraph ' + data[i].icon + '" data-icon="' + data[i].icon + '"></i>';
+                        ulHtml += '<i class="seraph layui-icon ' + data[i].icon + '" data-icon="' + data[i].icon + '"></i>';
                     } else {
                         ulHtml += '<i class="layui-icon" data-icon="' + data[i].icon + '">' + data[i].icon + '</i>';
                     }
@@ -84,9 +84,12 @@ layui.define(["element", "jquery"], function (exports) {
     Tab.prototype.render = function () {
         //显示左侧菜单
         var _this = this;
-        $(".navBar ul").html('<li class="layui-nav-item layui-this"><a data-url="page/main.html"><i class="layui-icon" data-icon="&#xe68e;">&#xe68e;</i><cite>主页</cite></a></li>').append(_this.navBar(dataStr)).height($(window).height() - 210);
+        $(".navBar ul").html('<li class="layui-nav-item layui-this">' +
+            '<a data-url="page/main.html">' +
+            '<i class="layui-icon" data-icon="&#xe68e;">&#xe68e;</i><cite>主页</cite>' +
+            '</a></li>').append(_this.navBar(dataStr)).height($(window).height() - 210);
         //初始化页面元素
-        element.init();  
+        element.init();
         $(window).resize(function () {
             $(".navBar").height($(window).height() - 210);
         })
@@ -135,13 +138,13 @@ layui.define(["element", "jquery"], function (exports) {
         var that = this;
         var openTabNum = that.tabConfig.openTabNum;
         tabFilter = that.tabConfig.tabFilter;
-        if (_this.attr("target") == "_blank") {
+        if (_this.attr("target")) {
             window.open(_this.attr("data-url"));
         } else if (_this.attr("data-url") != undefined) {
             var title = '';
             if (_this.find("i.seraph,i.layui-icon").attr("data-icon") != undefined) {
                 if (_this.find("i.seraph").attr("data-icon") != undefined) {
-                    title += '<i class="seraph ' + _this.find("i.seraph").attr("data-icon") + '"></i>';
+                    title += '<i class="seraph layui-icon ' + _this.find("i.seraph").attr("data-icon") + '"></i>';
                 } else {
                     title += '<i class="layui-icon">' + _this.find("i.layui-icon").attr("data-icon") + '</i>';
                 }

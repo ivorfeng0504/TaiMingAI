@@ -20,12 +20,18 @@ namespace TaiMingAI.DataHelper
         /// <returns>实体List</returns>
         public static List<T> DataTableToList<T>(DataTable dt) where T : class, new()
         {
-            if (dt == null || dt.Rows.Count == 0) throw new ArgumentNullException("DataTableToList", "被转换数据为空");
+            if (dt == null) return null;
+
+            var list = new List<T>();
+            if (dt.Rows.Count == 0)
+            {
+                return list;
+            }
+
             //获取转换类型
             Type t = typeof(T);
             //获取转换类型的公有属性
             PropertyInfo[] propertyInfos = t.GetProperties();
-            var list = new List<T>();
             foreach (DataRow dr in dt.Rows)
             {
                 //赋值
@@ -35,7 +41,21 @@ namespace TaiMingAI.DataHelper
                     //字段在 DataRow 中存在 && 非泛型
                     if (dr.Table.Columns.Contains(prop.Name) && !prop.PropertyType.IsGenericType)
                     {
-                        prop.SetValue(model, Convert.ChangeType(dr[prop.Name], prop.PropertyType), null);
+                        if (dr[prop.Name] == DBNull.Value)
+                        {
+                            if (prop.PropertyType.IsValueType)
+                            {
+                                prop.SetValue(model, Activator.CreateInstance(prop.PropertyType), null);
+                            }
+                            else
+                            {
+                                prop.SetValue(model, null, null);
+                            }
+                        }
+                        else
+                        {
+                            prop.SetValue(model, Convert.ChangeType(dr[prop.Name], prop.PropertyType), null);
+                        }
                     }
                 }
                 list.Add(model);
@@ -53,7 +73,7 @@ namespace TaiMingAI.DataHelper
         /// <returns>实体Model</returns>
         public static T DataRowToModel<T>(DataRow dr) where T : class, new()
         {
-            if (dr == null) throw new ArgumentNullException("DataRowToModel", "被转换数据为空");
+            if (dr == null) return null;
             //获取转换类型
             Type t = typeof(T);
             //获取转换类型的公有属性
@@ -66,7 +86,21 @@ namespace TaiMingAI.DataHelper
                 //字段在 DataRow 中存在 && 非泛型
                 if (dr.Table.Columns.Contains(prop.Name) && !prop.PropertyType.IsGenericType)
                 {
-                    prop.SetValue(model, Convert.ChangeType(dr[prop.Name], prop.PropertyType), null);
+                    if (dr[prop.Name] == null)
+                    {
+                        if (prop.PropertyType.IsValueType)
+                        {
+                            prop.SetValue(model, Activator.CreateInstance(prop.PropertyType), null);
+                        }
+                        else
+                        {
+                            prop.SetValue(model, null, null);
+                        }
+                    }
+                    else
+                    {
+                        prop.SetValue(model, Convert.ChangeType(dr[prop.Name], prop.PropertyType), null);
+                    }
                 }
             }
             return model;
@@ -84,7 +118,7 @@ namespace TaiMingAI.DataHelper
         /// <returns>返回转换后的实体B</returns>
         public static TOT ModelToModel<T, TOT>(T tModel) where T : class, new() where TOT : class, new()
         {
-            if (tModel == null) throw new ArgumentNullException("ModelToModel", "被转换对象为空");
+            if (tModel == null) return null;
             //获取被转换类型
             Type t = typeof(T);
             //获取被转换类型的公有属性
@@ -106,6 +140,36 @@ namespace TaiMingAI.DataHelper
                 }
             }
             return totModel as TOT;
+        }
+        public static List<TOT> ListToList<T, TOT>(List<T> tList) where T : class, new() where TOT : class, new()
+        {
+            if (tList == null) return null;
+            var totList = new List<TOT>();
+            //获取被转换类型
+            Type t = typeof(T);
+            //获取被转换类型的公有属性
+            PropertyInfo[] tPros = t.GetProperties();
+            //获取结果类型
+            Type tot = typeof(TOT);
+            //获取结果类型的公有属性
+            PropertyInfo[] totPros = tot.GetProperties();
+            foreach (var item in tList)
+            {
+                var totModel = Activator.CreateInstance(tot) as TOT;
+
+                foreach (PropertyInfo tPro in tPros)
+                {
+                    //赋值
+                    var totPro = totPros.FirstOrDefault(x => x.Name == tPro.Name);
+                    if (totPro != null)
+                    {
+                        totPro.SetValue(totModel, tPro.GetValue(item));
+                    }
+                }
+                totList.Add(totModel as TOT);
+            }
+            //创建结果类型实体
+            return totList;
         }
         #endregion
 

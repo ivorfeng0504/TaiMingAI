@@ -15,13 +15,19 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "TaiMingAI.Database", "TaiMi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.WebApi.BLL", "TaiMingAI.WebApi.BLL\TaiMingAI.WebApi.BLL.csproj", "{7B571173-B865-4DA0-833D-786CC2D326F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.WebApi.DLL", "TaiMingAI.WebApi.DLL\TaiMingAI.WebApi.DLL.csproj", "{8D42104C-6374-4C66-995B-53E24EAAFA07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.WebApi.DAL", "TaiMingAI.WebApi.DLL\TaiMingAI.WebApi.DAL.csproj", "{8D42104C-6374-4C66-995B-53E24EAAFA07}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAi.WebApi.Model", "TaiMingAi.WebApi.Model\TaiMingAi.WebApi.Model.csproj", "{2DD3F0ED-E32C-431C-BC89-1D49764FD5F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.DBTools", "TaiMingAI.DBTools\TaiMingAI.DBTools.csproj", "{4EABAC04-D30D-4AFB-AD34-D10EF766A651}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.Manager", "TaiMingAI.Manager\TaiMingAI.Manager.csproj", "{66CD7801-60FE-4587-A5F7-56E2B45C50DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.Manager.Model", "TaiMingAI.Manager.Model\TaiMingAI.Manager.Model.csproj", "{5FC6EF49-5E59-493E-BB09-B82CA045C530}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.Manager.BLL", "TaiMingAI.Manager.BLL\TaiMingAI.Manager.BLL.csproj", "{8316EA22-ACC7-4E5B-834E-0CF3E14FD665}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.Manager.DAL", "TaiMingAI.Manager.DAL\TaiMingAI.Manager.DAL.csproj", "{42ACA76C-6B24-4342-B001-1BA02FD58856}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +77,18 @@ Global
 		{66CD7801-60FE-4587-A5F7-56E2B45C50DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66CD7801-60FE-4587-A5F7-56E2B45C50DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66CD7801-60FE-4587-A5F7-56E2B45C50DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FC6EF49-5E59-493E-BB09-B82CA045C530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FC6EF49-5E59-493E-BB09-B82CA045C530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FC6EF49-5E59-493E-BB09-B82CA045C530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FC6EF49-5E59-493E-BB09-B82CA045C530}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8316EA22-ACC7-4E5B-834E-0CF3E14FD665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8316EA22-ACC7-4E5B-834E-0CF3E14FD665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8316EA22-ACC7-4E5B-834E-0CF3E14FD665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8316EA22-ACC7-4E5B-834E-0CF3E14FD665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42ACA76C-6B24-4342-B001-1BA02FD58856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42ACA76C-6B24-4342-B001-1BA02FD58856}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42ACA76C-6B24-4342-B001-1BA02FD58856}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42ACA76C-6B24-4342-B001-1BA02FD58856}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

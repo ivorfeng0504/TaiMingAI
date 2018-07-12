@@ -57,13 +57,13 @@ iframe{ position:absolute; height:100%; width:100%; border:none;}
 .topLevelMenus{float:left;}
 .topLevelMenus li.layui-nav-item:hover{ background-color:rgba(221,221,221,0.2);}
 .layui-nav .layui-this:after{ bottom:-5px!important;}
-.header .layui-nav-bar{top:60px !important;}
+.header .layui-nav-bar{top:0 !important;}
 .topLevelMenus .layui-nav-item.layui-this{ background-color:rgba(0,0,0,0.5);}
 .top_menu.layui-nav .layui-this:after{ width:0px; }
-.top_menu .layui-nav-bar,.mobileTopLevelMenus .layui-nav-bar{background-color:rgba(0,0,0,0.7);}
+.top_menu .layui-nav-bar,.mobileTopLevelMenus .layui-nav-bar{background-color:rgba(0,0,0,0.7);height:3px;}
 
 /*左侧导航*/
-.layui-nav{background-color: inherit !important;}
+/*.layui-nav{background-color: inherit !important;}*/
 .showMenu.layui-layout-admin .layui-side{ left:-200px; }
 .showMenu .layui-body,.showMenu .layui-footer{ left:0; }
 /*左侧用户头像*/
@@ -75,8 +75,9 @@ iframe{ position:absolute; height:100%; width:100%; border:none;}
 .user-photo p{ display: block; width: 100%; height: 25px; color: #ffffff; text-align: center; font-size: 12px; white-space: nowrap;line-height: 25px; overflow: hidden;}
 /*左侧导航重定义*/
 .layui-nav-item.layui-nav-itemed{ background-color:#2B2E37 !important;}
-.layui-nav-itemed:before{ width:5px; height:100%; background-color:#009688; position:absolute; content:''; left:0; top:0;}
+.layui-nav-itemed:before{ width:5px; height:100%; /*background-color:#009688;*/ position:absolute; content:''; left:0; top:0;}
 .layui-nav-itemed .layui-nav-child a{ padding-left:40px;}
+.layui-nav-itemed .layui-nav-child .layui-nav-child a {padding-left: 60px;}
 /*左侧搜索框*/
 .component{ width:180px; height:30px; margin:0 auto 5px; position:relative;}
 .component .layui-input{ height:30px; line-height: 30px; font-size:12px; border:none; transition: all 0.3s; background:rgba(255,255,255,0.05); }
@@ -93,7 +94,7 @@ iframe{ position:absolute; height:100%; width:100%; border:none;}
 #top_tabs{ position: absolute; border-bottom:none;}
 .layui-tab-title .layui-this{ background-color:#f6f6f6; color:#000; }
 .layui-tab-title .layui-this:after{ border:none; }
-.layui-tab-title li {height:40px;}
+.layui-tab-title li {height:40px;border-right: 1px solid #f6f6f6;}
 .layui-tab-title li:first-child {min-width:0;}
 .layui-tab-title li cite{ font-style: normal; padding-left:5px; }
 .clildFrame.layui-tab-content{ top:41px; position:absolute; bottom:0; width:100%; padding:0;}
@@ -154,7 +155,7 @@ iframe{ position:absolute; height:100%; width:100%; border:none;}
 }
 
 /*修改顶部高度*/
-.header .layui-nav-child,.layui-body,.header .layui-nav-bar{ top:50px !important;}
+.header .layui-nav-child,.layui-body{ top:50px !important;}
 .layui-layout-admin .layui-side{top:0;z-index:2001;}
 .header .layui-nav .layui-nav-item,.header .layui-nav .layui-nav-item>a,.header,.logo{ line-height:50px !important; max-height:50px; !important;}
 .mobileTopLevelMenus{ float:left;}

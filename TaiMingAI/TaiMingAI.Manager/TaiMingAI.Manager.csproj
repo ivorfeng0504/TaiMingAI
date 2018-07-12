@@ -143,10 +143,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\Manager\AdministratorController.cs" />
+    <Compile Include="Controllers\Manager\NavbarController.cs" />
+    <Compile Include="Controllers\Manager\RoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\NavBar.cs" />
+    <Compile Include="Models\TableAsync.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +278,18 @@
     <Content Include="Content\json\userGrade.json" />
     <Content Include="Content\json\userList.json" />
     <Content Include="Content\json\newNavBar.json" />
+    <Content Include="Config\dev\AppSetting.config" />
+    <Content Include="Config\dev\ConnectionStrings.config" />
+    <Content Include="Config\log4net.config" />
+    <Content Include="Config\sql\NavbarSql.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\sql\RoleSql.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\sql\Administrator.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Content\Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\Scripts\pageJs\cache.js" />
     <Content Include="Content\Scripts\jquery-1.10.2.js" />
@@ -284,9 +300,46 @@
     <Content Include="Content\Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Content\Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Content\Scripts\modernizr-2.6.2.js" />
+    <Content Include="Content\Scripts\pageJs\common.js" />
     <Content Include="Content\Scripts\pageJs\layout.js" />
+    <Content Include="Content\Scripts\pageJs\admin_index.js" />
+    <Content Include="Content\Scripts\pageJs\role_index.js" />
+    <Content Include="Content\Scripts\pageJs\navber_index.js" />
     <Content Include="Content\Scripts\respond.js" />
     <Content Include="Content\Scripts\respond.min.js" />
+    <Content Include="Content\zTree\css\awesomeStyle\awesome.css" />
+    <Content Include="Content\zTree\css\awesomeStyle\img\loading.gif" />
+    <Content Include="Content\zTree\css\demo.css" />
+    <Content Include="Content\zTree\css\metroStyle\img\line_conn.png" />
+    <Content Include="Content\zTree\css\metroStyle\img\loading.gif" />
+    <Content Include="Content\zTree\css\metroStyle\img\metro.gif" />
+    <Content Include="Content\zTree\css\metroStyle\img\metro.png" />
+    <Content Include="Content\zTree\css\metroStyle\metroStyle.css" />
+    <Content Include="Content\zTree\css\zTreeStyle\img\diy\1_close.png" />
+    <Content Include="Content\zTree\css\zTreeStyle\img\diy\1_open.png" />
+    <Content Include="Content\zTree\css\zTreeStyle\img\diy\2.png" />
+    <Content Include="Content\zTree\css\zTreeStyle\img\diy\3.png" />
+    <Content Include="Content\zTree\css\zTreeStyle\img\diy\4.png" />
+    <Content Include="Content\zTree\css\zTreeStyle\img\diy\5.png" />
+    <Content Include="Content\zTree\css\zTreeStyle\img\diy\6.png" />
+    <Content Include="Content\zTree\css\zTreeStyle\img\diy\7.png" />
+    <Content Include="Content\zTree\css\zTreeStyle\img\diy\8.png" />
+    <Content Include="Content\zTree\css\zTreeStyle\img\diy\9.png" />
+    <Content Include="Content\zTree\css\zTreeStyle\img\line_conn.gif" />
+    <Content Include="Content\zTree\css\zTreeStyle\img\loading.gif" />
+    <Content Include="Content\zTree\css\zTreeStyle\img\zTreeStandard.gif" />
+    <Content Include="Content\zTree\css\zTreeStyle\img\zTreeStandard.png" />
+    <Content Include="Content\zTree\css\zTreeStyle\zTreeStyle.css" />
+    <Content Include="Content\zTree\js\jquery.ztree.all.js" />
+    <Content Include="Content\zTree\js\jquery.ztree.all.min.js" />
+    <Content Include="Content\zTree\js\jquery.ztree.core.js" />
+    <Content Include="Content\zTree\js\jquery.ztree.core.min.js" />
+    <Content Include="Content\zTree\js\jquery.ztree.excheck.js" />
+    <Content Include="Content\zTree\js\jquery.ztree.excheck.min.js" />
+    <Content Include="Content\zTree\js\jquery.ztree.exedit.js" />
+    <Content Include="Content\zTree\js\jquery.ztree.exedit.min.js" />
+    <Content Include="Content\zTree\js\jquery.ztree.exhide.js" />
+    <Content Include="Content\zTree\js\jquery.ztree.exhide.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="ApplicationInsights.config">
@@ -317,18 +370,30 @@
     <Content Include="Views\Shared\_LayoutLeft.cshtml" />
     <Content Include="Views\Shared\_LayoutRight.cshtml" />
     <Content Include="Views\Shared\_LayoutFooter.cshtml" />
+    <Content Include="Views\Shared\_IframeLayout.cshtml" />
+    <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Navbar\Index.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Administrator\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\zTree\css\awesomeStyle\awesome.less" />
+    <Content Include="Content\zTree\css\awesomeStyle\fa.less" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TaiMingAI.Tools\TaiMingAI.Tools.csproj">
-      <Project>{32101ba4-818d-4a50-900b-aefd4ecb0441}</Project>
-      <Name>TaiMingAI.Tools</Name>
+    <ProjectReference Include="..\TaiMingAI.Manager.BLL\TaiMingAI.Manager.BLL.csproj">
+      <Project>{8316ea22-acc7-4e5b-834e-0cf3e14fd665}</Project>
+      <Name>TaiMingAI.Manager.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaiMingAI.Manager.Model\TaiMingAI.Manager.Model.csproj">
+      <Project>{5FC6EF49-5E59-493E-BB09-B82CA045C530}</Project>
+      <Name>TaiMingAI.Manager.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

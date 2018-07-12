@@ -11,7 +11,7 @@ namespace TaiMingAI.WebApi
         public static void Register(HttpConfiguration config)
         {
             //跨域配置
-            config.EnableCors(new EnableCorsAttribute(WebApiConfigModel.CorsOrigins, WebApiConfigModel.CorsHeaders, WebApiConfigModel.CorsMethods));
+            config.EnableCors(new EnableCorsAttribute(TaiMingAi.WebApi.Model.WebApiConfig.CorsOrigins, TaiMingAi.WebApi.Model.WebApiConfig.CorsHeaders, TaiMingAi.WebApi.Model.WebApiConfig.CorsMethods));
             // Web API 路由
             config.MapHttpAttributeRoutes();
            // config.Filters.Add(new SignCheckFilter());

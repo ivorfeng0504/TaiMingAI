@@ -18,7 +18,7 @@
         /// <summary>
         /// 密码（MD5 32位加密）
         /// </summary>
-        public string Powsword { get; set; }
+        public string Password { get; set; }
 
         /// <summary>
         /// 手机号码（11位）

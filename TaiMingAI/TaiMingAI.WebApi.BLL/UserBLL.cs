@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using TaiMingAi.WebApi.Model;
 using TaiMingAI.Tools;
-using TaiMingAI.WebApi.DLL;
+using TaiMingAI.WebApi.DAL;
 using TaiMingAI.WebApi.Models;
 
 namespace TaiMingAI.WebApi.BLL
@@ -16,18 +16,18 @@ namespace TaiMingAI.WebApi.BLL
         /// <returns></returns>
         public bool InternalRegisterUser(TmingUserInfo info)
         {
-            info.Powsword = MD5Helper.MD5UPassword(info.Powsword, WebApiConst.PaswordKey);
-            return UserDll.CreateUserDll.InternalRegisterUser(info);
+            info.Password = MD5Helper.MD5UPassword(info.Password, WebApiConst.PaswordKey);
+            return UserDal.CreateUserDll.InternalRegisterUser(info);
         }
 
         public List<TmingUserInfo> GetUserList()
         {
-            return UserDll.CreateUserDll.GetUserInfoList();
+            return UserDal.CreateUserDll.GetUserInfoList();
         }
 
         public TmingUserInfo GetUserInfoById(int id)
         {
-            return UserDll.CreateUserDll.GetUserInfoById(id);
+            return UserDal.CreateUserDll.GetUserInfoById(id);
         }
 
         public LoginDoRespons LoginDo(LoginDoRequest model)

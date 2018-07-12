@@ -35,6 +35,10 @@ namespace TaiMingAI.Manager
                 "~/Content/layui/layui.js",
                 "~/Content/Scripts/pageJs/layout.js",
                 "~/Content/Scripts/pageJs/cache.js"));
+            bundles.Add(new ScriptBundle("~/bundles/ifreamlayuijs").Include(
+                "~/Content/layui/layui.js",
+                "~/Content/Scripts/pageJs/common.js"
+                ));
         }
     }
 }
