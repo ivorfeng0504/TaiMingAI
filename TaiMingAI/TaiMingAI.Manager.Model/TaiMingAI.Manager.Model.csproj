@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -41,11 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoMapper\Configuration.cs" />
+    <Compile Include="AutoMapper\MapperProfile.cs" />
     <Compile Include="ControllerResult.cs" />
     <Compile Include="ManagerConst.cs" />
     <Compile Include="ManagerDto\AdministratorDto.cs" />
     <Compile Include="DBModel\Administrator.cs" />
-    <Compile Include="DBModel\NavBar.cs" />
+    <Compile Include="DBModel\Navbar.cs" />
     <Compile Include="DBModel\Role.cs" />
     <Compile Include="ManagerConfig.cs" />
     <Compile Include="ManagerDto\NavbarDto.cs" />

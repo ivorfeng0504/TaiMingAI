@@ -1,17 +1,21 @@
-﻿<!DOCTYPE html>
+﻿@using TaiMingAI.Manager.Model;
+@{
+    AdministratorDto userInfo = Model;
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+
     <title>个股三分钟管理后台</title>
     @Styles.Render("~/bundles/layuicss")
 </head>
 <body class="main_body">
     <div class="layui-layout layui-layout-admin">
-        @Html.Partial("_LayoutTop")
-        @Html.Partial("_LayoutLeft")
+        @Html.Partial("_LayoutTop", userInfo)
+        @Html.Partial("_LayoutLeft", userInfo)
         <div class="layui-body layui-form">
             <div class="layui-tab mag0 layadmin-pagetabs" lay-filter="bodyTab" id="top_tabs_box">
                 <ul class="layui-tab-title top_tab" id="top_tabs">

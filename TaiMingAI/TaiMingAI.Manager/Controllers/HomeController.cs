@@ -8,13 +8,13 @@ using TaiMingAI.Manager.Models;
 
 namespace TaiMingAI.Manager.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
             NavbarManager navbarManager = new NavbarManager();
-            ViewBag.NavBar = navbarManager.GetNavbarJson();
-            return View();
+            ViewBag.NavBar = navbarManager.GetNavbarJson(UserInfo);
+            return View(UserInfo);
         }
 
         public ActionResult About()

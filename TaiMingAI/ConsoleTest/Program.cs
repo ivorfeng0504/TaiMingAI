@@ -1,14 +1,17 @@
-﻿using ConsoleTest.model;
+﻿using AutoMapper;
+using ConsoleTest.model;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using TaiMingAi.WebApi.Model;
 using TaiMingAI.Caches;
+using TaiMingAI.Manager.Model;
 using TaiMingAI.Tools;
 using TaiMingAI.WebApi;
 using TaiMingAI.WebApi.BLL;
 using TaiMingAI.WebApi.Models;
+using TaiMingAI.DataHelper;
 
 namespace ConsoleTest
 {
@@ -91,22 +94,22 @@ namespace ConsoleTest
             //helloDel s = (string st) => st + "hello";
             //priceTotaller.hello("李瓶儿", PrintTitle);
             //Console.WriteLine(s("无敌"));
-            Console.WriteLine("我想洗澡...");
-            Heater heater = new Heater(45);
+            //Console.WriteLine("我想洗澡...");
+            //Heater heater = new Heater(45);
             //heater.HeatWater();
-            HeaterWaterDel heaterWaterDel = heater.HeatWater;
-            IAsyncResult asyncResult = heaterWaterDel.BeginInvoke(null, null);
-            Console.WriteLine("我先去看会儿电视...");
-            int i = 0;
-            while (!asyncResult.IsCompleted)
-            {
-                Console.Write("{0}.. ", (i++).ToString());
-                if(asyncResult.IsCompleted)
-                {
-                    Console.WriteLine("水烧好了，去洗澡");
-                }
-            }
-            heaterWaterDel.EndInvoke(asyncResult);
+            //HeaterWaterDel heaterWaterDel = heater.HeatWater;
+            //IAsyncResult asyncResult = heaterWaterDel.BeginInvoke(null, null);
+            //Console.WriteLine("我先去看会儿电视...");
+            //int i = 0;
+            //while (!asyncResult.IsCompleted)
+            //{
+            //    Console.Write("{0}.. ", (i++).ToString());
+            //    if (asyncResult.IsCompleted)
+            //    {
+            //        Console.WriteLine("水烧好了，去洗澡");
+            //    }
+            //}
+            //heaterWaterDel.EndInvoke(asyncResult);
             #endregion
 
             #region 装饰模式
@@ -193,6 +196,34 @@ namespace ConsoleTest
             //db.Invoke();
             //Meal classicalMeal = buildClassical.GetMeal();
             //classicalMeal.Show();
+            #endregion
+
+            #region AutoMapper
+            TaiMingAI.Manager.Model.AutoMapper.Configuration.Configure();
+            RoleDto role = new RoleDto
+            {
+                Name = "ss",
+                Id = 9
+            };
+            var list = new List<RoleDto> { role };
+            Console.WriteLine("Role:{0}", JsonHelper.ToJson(list));
+            var dto = Mapper.Map<List<RoleDto>, List<Role>>(list);
+            var d = Mapper.Map<Role>(role);
+
+            AdministratorDto ad = new AdministratorDto
+            {
+                NickName = "dd",
+                Mobile = "12345"
+            };
+            var add = ad.MapTo<Administrator>();
+            Navbar navbar = new Navbar { Id = 22, href = "baidu" };
+            Dictionary<string, string> dictionary = new Dictionary<string, string>
+            {
+                { "Id","ParentId"},
+                { "href","icon"}
+            };
+            var navbarDat = navbar.MapTo<NavbarDto>(dictionary);
+            Console.WriteLine("add:{0}", JsonHelper.ToJson(d));
             #endregion
             Console.ReadKey();
         }

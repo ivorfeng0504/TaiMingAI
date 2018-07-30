@@ -14,14 +14,14 @@ namespace TaiMingAI.Manager.DAL
     public class NavbarDal
     {
         private DBContext dBContext = DBContext.InitDBContext;
-        public List<NavBardb> GetNavbarList()
+        public List<Navbar> GetNavbarList()
         {
             var sql = dBContext.GetSql("NavbarSql.GetNavbarList");
             var result = dBContext.ExecuteDataTable(ManagerConfig.DbManager, CommandType.Text, sql, null);
-            return DataConvertHelper.DataTableToList<NavBardb>(result);
+            return DataConvertHelper.DataTableToList<Navbar>(result);
         }
 
-        public bool InsertNavber(NavBardb navBar)
+        public bool InsertNavber(Navbar navBar)
         {
             var sql = dBContext.GetSql("NavbarSql.InsertNavber");
             SqlParameter[] sqlPar = new SqlParameter[] {
@@ -38,7 +38,7 @@ namespace TaiMingAI.Manager.DAL
             return result > 0;
         }
 
-        public bool UpdateNavber(NavBardb navBar)
+        public bool UpdateNavber(Navbar navBar)
         {
             var sql = dBContext.GetSql("NavbarSql.UpdateNavber");
             SqlParameter[] sqlPar = new SqlParameter[] {

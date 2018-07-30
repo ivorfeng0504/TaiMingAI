@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using TaiMingAI.DataHelper;
 using TaiMingAI.Manager.Model;
 using TaiMingAI.Tools;
 
@@ -10,21 +9,57 @@ namespace TaiMingAI.Manager.BLL
 {
     public class NavbarManager
     {
-        #region 获取左侧导航数据
+        #region +首页左侧菜单：获取导航数据
         /// <summary>
         /// 获取导航json数据
         /// </summary>
-        /// <param name="isAll">是否获取全部数据;默认只获取显示的菜单</param>
+        /// <param name="userInfo">登录用户信息</param>
         /// <returns>导航json</returns>
-        public string GetNavbarJson(bool isAll = false)
+        public string GetNavbarJson(AdministratorDto userInfo)
         {
-            var navberList = GetNavbarList(isAll);
+            if (userInfo == null || string.IsNullOrEmpty(userInfo.Role)) return string.Empty;
+
+            RoleBll roleBll = new RoleBll();
+            //获取权限范围
+            List<int> limits = roleBll.GetRoleLimitsByIds(userInfo.Role);
+            var navberList = GetNavbarListByLimits(limits);
             return JsonHelper.ToJson(navberList);
         }
-        public string GetNavbarJson(out string dic, bool isAll = false)
+        /// <summary>
+        /// 获取导航列表_根据权限范围
+        /// </summary>
+        /// <param name="limits">权限范围</param>
+        /// <returns>导航列表List_NavbarJson</returns>
+        private List<NavbarDto> GetNavbarListByLimits(List<int> limits)
+        {
+            var newNavberList = new List<NavbarDto>();
+            if (limits.Count() == 0) return newNavberList;
+
+            NavbarBll navbarBll = new NavbarBll();
+            var navbarDtoList = navbarBll.GetNavbarDtoList(false);
+            if (navbarDtoList == null || navbarDtoList.Count == 0) return newNavberList;
+            navbarDtoList = navbarDtoList.FindAll(x => limits.Contains(x.Id));
+
+            var parentList = navbarDtoList.FindAll(x => x.ParentId == 0).OrderBy(x => x.Sort).ToList();
+            foreach (var parent in parentList)
+            {
+                GetNavberJson(parent, navbarDtoList);
+                newNavberList.Add(parent);
+            }
+            return newNavberList;
+        }
+        #endregion
+
+        #region +导航管理页面：获取导航列表
+        /// <summary>
+        /// 导航管理页面 - 导航列表
+        /// </summary>
+        /// <param name="dic">父导航下拉列表数据源</param>
+        /// <returns>导航列表JSON数据</returns>
+        public string GetNavbarJson(out string dic)
         {
             Dictionary<int, string> dicNavbar;
-            var navberList = GetNavbarList(out dicNavbar, isAll);
+            var navberList = GetNavbarList(out dicNavbar);
             dic = JsonHelper.ToJson(dicNavbar.Select(x => new
             {
                 key = x.Key,
@@ -32,53 +67,37 @@ namespace TaiMingAI.Manager.BLL
             }));
             return JsonHelper.ToJson(navberList);
         }
-
-        /// <summary>
-        /// 获取导航列表
-        /// </summary>
-        /// <param name="isAll">是否获取全部数据;默认只获取显示的菜单</param>
-        /// <returns>导航列表List_NavbarJson</returns>
-        public List<NavbarDto> GetNavbarList(bool isAll = false)
-        {
-            NavbarBll navbarBll = new NavbarBll();
-            var newNavberList = new List<NavbarDto>();
-            var navbarList = navbarBll.GetNavbarList(isAll);
-            if (navbarList == null || navbarList.Count == 0) return newNavberList;
-
-            var navbarJsonList = DataConvertHelper.ListToList<NavBardb, NavbarDto>(navbarList);
-            var parentList = navbarJsonList.FindAll(x => x.ParentId == 0).OrderBy(x => x.Sort).ToList();
-
-            foreach (var parent in parentList)
-            {
-                GetNavberJson(parent, navbarJsonList);
-                newNavberList.Add(parent);
-            }
-            return newNavberList;
-        }
-        public List<NavbarDto> GetNavbarList(out Dictionary<int, string> dic, bool isAll = false)
+        private List<NavbarDto> GetNavbarList(out Dictionary<int, string> dic)
         {
             NavbarBll navbarBll = new NavbarBll();
             var newNavberList = new List<NavbarDto>();
             dic = new Dictionary<int, string>();
-            var navbarList = navbarBll.GetNavbarList(isAll);
-            if (navbarList == null || navbarList.Count == 0) return newNavberList;
-            foreach (var item in navbarList)
+
+            var navbarDtoList = navbarBll.GetNavbarDtoList(true);
+            if (navbarDtoList == null || navbarDtoList.Count == 0) return newNavberList;
+
+            foreach (var item in navbarDtoList)
             {
                 if (!item.IsShow) continue;
                 dic.Add(item.Id, item.title);
             }
 
-            var navbarJsonList = DataConvertHelper.ListToList<NavBardb, NavbarDto>(navbarList);
-            var parentList = navbarJsonList.FindAll(x => x.ParentId == 0).OrderBy(x => x.Sort).ToList();
-
+            var parentList = navbarDtoList.FindAll(x => x.ParentId == 0).OrderBy(x => x.Sort).ToList();
             foreach (var parent in parentList)
             {
-                GetNavberJson(parent, navbarJsonList);
+                GetNavberJson(parent, navbarDtoList);
                 newNavberList.Add(parent);
             }
             return newNavberList;
         }
+        #endregion
 
+        #region -导航数据递归重组
+        /// <summary>
+        /// 递归重组 导航数据
+        /// </summary>
+        /// <param name="nav">父节点</param>
+        /// <param name="navbarList">导航数据</param>
         private void GetNavberJson(NavbarDto nav, List<NavbarDto> navbarList)
         {
             var childerList = navbarList.FindAll(x => x.ParentId == nav.Id);
@@ -95,7 +114,7 @@ namespace TaiMingAI.Manager.BLL
         #endregion
 
         #region 提交导航菜单数据
-        public ControllerResult SubmitNavber(NavBardb navBar)
+        public ControllerResult SubmitNavber(Navbar navBar)
         {
             ControllerResult result = new ControllerResult();
             try
@@ -123,7 +142,7 @@ namespace TaiMingAI.Manager.BLL
                 if (flag)
                 {
                     string dic;
-                    var json = GetNavbarJson(out dic, true);
+                    var json = GetNavbarJson(out dic);
                     result.DefaultSuccess(dic + "$#$" + json);
                 }
                 else
@@ -140,7 +159,7 @@ namespace TaiMingAI.Manager.BLL
         }
         #endregion
 
-        #region 角色页面获取导航列表
+        #region +角色页面:获取导航列表(zTree格式)
         /// <summary>
         /// 编辑角色页面获取导航列表
         /// </summary>
@@ -151,8 +170,9 @@ namespace TaiMingAI.Manager.BLL
             try
             {
                 NavbarBll navbarBll = new NavbarBll();
-                var navbarList = navbarBll.GetNavbarList(false);
+                var navbarList = navbarBll.GetNavbarDtoList(false);
                 if (navbarList == null || navbarList.Count == 0) return resultJson;
+
                 List<int> parentIds = navbarList.Where(x => x.ParentId == 0).Select(x => x.Id).ToList();
                 List<int> ids = new List<int>();
                 ids.AddRange(parentIds);
@@ -178,7 +198,7 @@ namespace TaiMingAI.Manager.BLL
             return resultJson;
         }
 
-        private void GetShowNavberIdsByParent(List<int> ids, int parentId, List<NavBardb> navbarList)
+        private void GetShowNavberIdsByParent(List<int> ids, int parentId, List<NavbarDto> navbarList)
         {
             var childerList = navbarList.FindAll(x => x.ParentId == parentId);
             if (childerList == null || childerList.Count == 0)

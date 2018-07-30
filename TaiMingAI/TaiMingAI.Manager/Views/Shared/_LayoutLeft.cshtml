@@ -1,4 +1,8 @@
-﻿<!-- 左侧导航 -->
+﻿@using TaiMingAI.Manager.Model;
+@{
+    AdministratorDto userInfo = Model;
+}
+<!-- 左侧导航 -->
 <div class="layui-side layui-bg-black">
     <div class="user-photo">
         <a class="img" title="我的头像">
@@ -6,7 +10,7 @@
         </a>
         <p>
             你好！
-            <span class="userName">123</span>, 欢迎登录
+            <span class="userName">@userInfo.NickName</span>, 欢迎登录
         </p>
     </div>
     <!-- 搜索 -->

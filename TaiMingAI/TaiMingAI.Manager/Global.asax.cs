@@ -8,7 +8,7 @@ using System.Web.Routing;
 
 namespace TaiMingAI.Manager
 {
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
@@ -16,6 +16,8 @@ namespace TaiMingAI.Manager
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //映射配置
+            Model.AutoMapper.Configuration.Configure();
         }
     }
 }

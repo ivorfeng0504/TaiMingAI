@@ -1,4 +1,8 @@
-﻿<!-- 顶部 -->
+﻿@using TaiMingAI.Manager.Model;
+@{
+    AdministratorDto userInfo = Model;
+}
+<!-- 顶部 -->
 <div class="layui-header header">
     <div class="layui-main mag0">
         <a href="#" class="logo">个股三分钟管理后台</a>
@@ -10,29 +14,29 @@
         <!-- 顶级菜单 -->
         <ul class="layui-nav topLevelMenus">
             @*<li class="layui-nav-item layui-this" data-menu="contentManagement">
-                <a href="javascript:;">
-                    <i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i>
-                    <cite>内容管理</cite>
-                </a>
-            </li>
-            <li class="layui-nav-item" data-menu="memberCenter">
-                <a href="javascript:;">
-                    <i class="seraph icon-icon10" data-icon="icon-icon10"></i>
-                    <cite>用户中心</cite>
-                </a>
-            </li>
-            <li class="layui-nav-item" data-menu="systemeSttings">
-                <a href="javascript:;">
-                    <i class="layui-icon" data-icon="&#xe620;">&#xe620;</i>
-                    <cite>系统设置</cite>
-                </a>
-            </li>
-            <li class="layui-nav-item" data-menu="seraphApi">
-                <a href="javascript:;">
-                    <i class="layui-icon" data-icon="&#xe705;">&#xe705;</i>
-                    <cite>使用文档</cite>
-                </a>
-            </li>*@
+                    <a href="javascript:;">
+                        <i class="layui-icon" data-icon="&#xe63c;">&#xe63c;</i>
+                        <cite>内容管理</cite>
+                    </a>
+                </li>
+                <li class="layui-nav-item" data-menu="memberCenter">
+                    <a href="javascript:;">
+                        <i class="seraph icon-icon10" data-icon="icon-icon10"></i>
+                        <cite>用户中心</cite>
+                    </a>
+                </li>
+                <li class="layui-nav-item" data-menu="systemeSttings">
+                    <a href="javascript:;">
+                        <i class="layui-icon" data-icon="&#xe620;">&#xe620;</i>
+                        <cite>系统设置</cite>
+                    </a>
+                </li>
+                <li class="layui-nav-item" data-menu="seraphApi">
+                    <a href="javascript:;">
+                        <i class="layui-icon" data-icon="&#xe705;">&#xe705;</i>
+                        <cite>使用文档</cite>
+                    </a>
+                </li>*@
         </ul>
 
         <!-- 顶部右侧菜单 -->
@@ -53,7 +57,7 @@
             <li class="layui-nav-item" id="userInfo">
                 <a href="javascript:;">
                     <img src="~/Content/images/face.jpg" class="layui-nav-img userAvatar" width="35" height="35">
-                    <cite class="adminName">admin</cite>
+                    <cite class="adminName">@userInfo.NickName</cite>
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
@@ -89,7 +93,7 @@
                         </a>
                     </dd>
                     <dd>
-                        <a href="page/login/login.html" class="signOut">
+                        <a href="/Login/LoginOut" class="signOut">
                             <i class="seraph icon-tuichu"></i>
                             <cite>退出</cite>
                         </a>

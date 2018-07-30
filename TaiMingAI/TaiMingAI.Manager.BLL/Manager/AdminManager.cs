@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using TaiMingAI.DataHelper;
 using TaiMingAI.Manager.Model;
@@ -18,8 +19,7 @@ namespace TaiMingAI.Manager.BLL
             try
             {
                 AdminBll bll = new AdminBll();
-                List<Administrator> list = bll.GetAdminList();
-                var dtoList = DataConvertHelper.ListToList<Administrator, AdministratorDto>(list);
+                var dtoList = bll.GetAdminList();
                 result.IsSuccess = true;
                 result.List = dtoList;
                 result.Message = "获取数据成功";

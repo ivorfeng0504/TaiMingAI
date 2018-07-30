@@ -16,5 +16,17 @@ namespace TaiMingAI.Manager.Model
         {
             get { return ConfigurationManager.ConnectionStrings["DbManagerConnectionString"].ConnectionString; }
         }
+
+        /// <summary>
+        /// 登录超时时间 单位/h
+        /// </summary>
+        public static int LoginTimeout
+        {
+            get
+            {
+                var loginTimeout = ConfigurationManager.AppSettings["LoginTimeout"];
+                return string.IsNullOrEmpty(loginTimeout) ? 12 : Convert.ToInt32(loginTimeout);
+            }
+        }
     }
 }

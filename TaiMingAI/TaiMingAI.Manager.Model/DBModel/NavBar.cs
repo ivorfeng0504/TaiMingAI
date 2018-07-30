@@ -5,7 +5,7 @@ namespace TaiMingAI.Manager.Model
     /// <summary>
     /// 菜单导航
     /// </summary>
-    public class NavBardb
+    public class Navbar
     {
         public int Id { get; set; }
 

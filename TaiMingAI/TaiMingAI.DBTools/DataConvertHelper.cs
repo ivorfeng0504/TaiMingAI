@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace TaiMingAI.DataHelper
     /// <summary>
     /// 数据类型转换
     /// </summary>
-    public class DataConvertHelper
+    public static class DataConvertHelper
     {
         #region DataTable TO List
         /// <summary>
@@ -71,7 +72,7 @@ namespace TaiMingAI.DataHelper
         /// <typeparam name="T">实体Model类型</typeparam>
         /// <param name="dr">数据源DataRow</param>
         /// <returns>实体Model</returns>
-        public static T DataRowToModel<T>(DataRow dr) where T : class, new()
+        public static T DataRowToModel<T>(DataRow dr) where T : class
         {
             if (dr == null) return null;
             //获取转换类型
@@ -104,6 +105,15 @@ namespace TaiMingAI.DataHelper
                 }
             }
             return model;
+        }
+
+        public static T DataRowMapTo<T>(DataRow dr) where T : class
+        {
+            if (dr == null) return null;
+            //获取转换类型
+            Type t = typeof(T);
+            var mappr = new MapperConfiguration(x => x.CreateMap(typeof(DataRow), t)).CreateMapper();
+            return mappr.Map<T>(dr);
         }
         #endregion
 
@@ -413,6 +423,66 @@ namespace TaiMingAI.DataHelper
             DateTime result;
             var isSuccess = DateTime.TryParse(ToString(obj), out result);
             return isSuccess ? result : defaultRef;
+        }
+        #endregion
+
+
+        #region 类转换
+        /// <summary>
+        /// 类型映射
+        /// </summary>
+        /// <typeparam name="T">目标类型</typeparam>
+        /// <param name="obj">数据源</param>
+        /// <param name="dic">自定义映射字段;Key:源字段名-Value:目标字段名</param>
+        /// <returns>目标数据</returns>
+        public static T MapTo<T>(this object obj, Dictionary<string, string> dic = null) where T : class
+        {
+            if (obj == null) return default(T);
+            Action<IMapperConfigurationExpression> configure; ;
+            if (dic != null && dic.Keys.Count > 0)
+            {
+                configure = x => AddMember(x.CreateMap(obj.GetType(), typeof(T)), dic);
+            }
+            else
+            {
+                configure = x => x.CreateMap(obj.GetType(), typeof(T));
+            }
+            var mapper = new MapperConfiguration(configure).CreateMapper();
+            return mapper.Map<T>(obj);
+        }
+
+        public static IMappingExpression AddMember(IMappingExpression e, Dictionary<string, string> dic)
+        {
+            if (dic != null && dic.Keys.Count > 0)
+            {
+                foreach (var item in dic)
+                {
+                    e.ForMember(item.Value, x => x.MapFrom(item.Key));
+                }
+            }
+            return e;
+        }
+        #endregion
+
+        #region 集合列表转换
+        /// <summary>
+        /// 集合列表类型映射
+        /// </summary>
+        public static List<TDestination> MapToList<TSource, TDestination>(this IEnumerable<TSource> source)
+        {
+            var mapper = new MapperConfiguration(x => x.CreateMap(typeof(TSource), typeof(TDestination))).CreateMapper();
+            return mapper.Map<List<TDestination>>(source);
+        }
+        #endregion
+
+        #region DataReader映射
+        /// <summary>
+        /// DataReader映射
+        /// </summary>
+        public static List<T> DataReaderMapTo<T>(this IDataReader reader)
+        {
+            var mapper = new MapperConfiguration(x => x.CreateMap(typeof(IDataReader), typeof(T))).CreateMapper();
+            return mapper.Map<IDataReader, List<T>>(reader);
         }
         #endregion
     }

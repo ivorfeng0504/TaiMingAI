@@ -15,23 +15,11 @@ namespace TaiMingAI.Manager.Model
         /// </summary>
         public string LoginName { get; set; }
 
-        private string password;
         /// <summary>
         /// 密码（MD5 32位加密）
         /// </summary>
-        public string Password
-        {
-            get
-            {
-                if (!string.IsNullOrWhiteSpace(password))
-                {
-                    password = MD5Helper.MD5UPassword(password, ManagerConst.PaswordKey);
-                }
-                return password;
-            }
-            set { password = value; }
-        }
-
+        public string Password { get; set; }
+        
         /// <summary>
         /// 角色Id
         /// </summary>

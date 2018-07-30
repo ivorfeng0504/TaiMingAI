@@ -1,6 +1,6 @@
 var $, tab, dataStr, layer;
 layui.extend({
-    bodyTab: '{/}Content/layui/lay/modules/bodyTab'
+    bodyTab: '/Content/layui/lay/modules/bodyTab'
 });
 layui.use(['bodyTab', 'form', 'element', 'layer', 'jquery'], function () {
     var form = layui.form,
@@ -12,11 +12,13 @@ layui.use(['bodyTab', 'form', 'element', 'layer', 'jquery'], function () {
         url: "Content/json/newNavBar.json" //获取菜单json地址
     });
 
-    //通过顶部菜单获取左侧二三级菜单   注：此处只做演示之用，实际开发中通过接口传参的方式获取导航数据
+    //通过顶部菜单获取左侧二三级菜单
     function getData(json) {
         dataStr = $("#navberJson").val();
-        dataStr = JSON.parse(dataStr);
-        tab.render();
+        if (!!dataStr) {
+            dataStr = JSON.parse(dataStr);
+            tab.render();
+        }
         return;
         $.getJSON(tab.tabConfig.url, function (data) {
             if (json == "contentManagement") {

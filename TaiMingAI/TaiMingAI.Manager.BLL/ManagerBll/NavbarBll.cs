@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,27 +15,27 @@ namespace TaiMingAI.Manager.BLL
         /// <summary>
         /// 获取导航菜单列表
         /// </summary>
-        /// <param name="isAll">是否获取全部数据</param>
-        /// <returns>菜单列表 List_NavBar</returns>
-        internal List<NavBardb> GetNavbarList(bool isAll)
+        /// <param name="isAll">是否获取全部数据;默认只获取显示的菜单</param>
+        /// <returns></returns>
+        internal List<NavbarDto> GetNavbarDtoList(bool isAll)
         {
             NavbarDal navbarDal = new NavbarDal();
             var list = navbarDal.GetNavbarList();
-            if (list == null || list.Count == 0) return list;
+            if (list == null || list.Count == 0) return null;
             if (!isAll)
             {
                 list = list.FindAll(x => x.IsShow);
             }
-            return list;
+            return Mapper.Map<List<Navbar>, List<NavbarDto>>(list);
         }
 
-        internal bool InsertNavber(NavBardb navBar)
+        internal bool InsertNavber(Navbar navBar)
         {
             NavbarDal navbarDal = new NavbarDal();
             return navbarDal.InsertNavber(navBar);
         }
 
-        internal bool UpdateNavber(NavBardb navBar)
+        internal bool UpdateNavber(Navbar navBar)
         {
             NavbarDal navbarDal = new NavbarDal();
             return navbarDal.UpdateNavber(navBar);

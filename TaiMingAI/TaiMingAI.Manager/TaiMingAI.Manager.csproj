@@ -46,6 +46,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -53,6 +56,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -142,6 +149,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\Manager\AdministratorController.cs" />
@@ -384,9 +392,15 @@
   <ItemGroup>
     <Content Include="Content\zTree\css\awesomeStyle\awesome.less" />
     <Content Include="Content\zTree\css\awesomeStyle\fa.less" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TaiMingAI.DBTools\TaiMingAI.DBTools.csproj">
+      <Project>{4EABAC04-D30D-4AFB-AD34-D10EF766A651}</Project>
+      <Name>TaiMingAI.DBTools</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TaiMingAI.Manager.BLL\TaiMingAI.Manager.BLL.csproj">
       <Project>{8316ea22-acc7-4e5b-834e-0cf3e14fd665}</Project>
       <Name>TaiMingAI.Manager.BLL</Name>
@@ -394,6 +408,10 @@
     <ProjectReference Include="..\TaiMingAI.Manager.Model\TaiMingAI.Manager.Model.csproj">
       <Project>{5FC6EF49-5E59-493E-BB09-B82CA045C530}</Project>
       <Name>TaiMingAI.Manager.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TaiMingAI.Tools\TaiMingAI.Tools.csproj">
+      <Project>{32101BA4-818D-4A50-900B-AEFD4ECB0441}</Project>
+      <Name>TaiMingAI.Tools</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
