@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using TaiMingAI.Manager.BLL;
+using TaiMingAI.Manager.Filters;
 using TaiMingAI.Manager.Model;
 using TaiMingAI.Manager.Models;
 
 namespace TaiMingAI.Manager.Controllers.Manager
 {
-    public class AdministratorController : Controller
+    public class AdministratorController : BaseController
     {
         public ActionResult Index()
         {
@@ -18,7 +16,6 @@ namespace TaiMingAI.Manager.Controllers.Manager
             ViewBag.RoleDic = roleDic;
             return View();
         }
-
         public JsonResult GetAdminList()
         {
             AdminManager manager = new AdminManager();
@@ -46,5 +43,14 @@ namespace TaiMingAI.Manager.Controllers.Manager
             var result = manager.UpdateAdminProperty(dto, property);
             return Json(result);
         }
+
+        #region 编辑个人资料
+        public ActionResult ModifyPage()
+        {
+            AdminManager manager = new AdminManager();
+            AdministratorDto dto = null;// manager.GetAdminInfo(User);
+            return View(dto);
+        }
+        #endregion
     }
 }

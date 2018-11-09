@@ -9,7 +9,7 @@ using TaiMingAI.Manager.Models;
 
 namespace TaiMingAI.Manager.Controllers.Manager
 {
-    public class RoleController : Controller
+    public class RoleController : BaseController
     {
         public ActionResult Index()
         {

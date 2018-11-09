@@ -92,7 +92,7 @@ window.matchMedia = window.matchMedia || (function(doc, undefined){
 						translate( sheet.styleSheet.rawCssText, href, media );
 						parsedSheets[ href ] = true;
 					} else {
-						if( (!/^([a-zA-Z:]*\/\/)/.test( href ) && !base)
+						if((!/^([a-zA-Z:]*\/\/)/.test( href ) && !base)
 							|| href.replace( RegExp.$1, "" ).split( "/" )[0] === win.location.host ){
 							requestQueue.push( {
 								href: href,

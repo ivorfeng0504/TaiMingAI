@@ -84,10 +84,7 @@ layui.define(["element", "jquery"], function (exports) {
     Tab.prototype.render = function () {
         //显示左侧菜单
         var _this = this;
-        $(".navBar ul").html('<li class="layui-nav-item layui-this">' +
-            '<a data-url="page/main.html">' +
-            '<i class="layui-icon" data-icon="&#xe68e;">&#xe68e;</i><cite>主页</cite>' +
-            '</a></li>').append(_this.navBar(dataStr)).height($(window).height() - 210);
+        $(".navBar ul").append(_this.navBar(dataStr)).height($(window).height() - 210);
         //初始化页面元素
         element.init();
         $(window).resize(function () {

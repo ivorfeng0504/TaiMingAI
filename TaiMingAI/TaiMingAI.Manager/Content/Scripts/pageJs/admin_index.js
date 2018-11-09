@@ -29,7 +29,6 @@
         $("#admin_edit_page form [name='role_mag']").show();
         return false;
     }
-
     /**
      * 编辑角色弹窗
      * @param {String} title：标题
@@ -55,6 +54,7 @@
                             var key = "Role[" + role + "]"
                             data[key] = true;
                         });
+                        data.Sex = data.Sex.toString()
                     }
                     form.val("admin_edit_form", data);
                 }

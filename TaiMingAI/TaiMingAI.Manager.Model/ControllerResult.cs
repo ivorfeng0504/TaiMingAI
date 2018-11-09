@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TaiMingAI.Manager.Model
 {
-    public class ControllerResult<T>
+    public class BaseResult
     {
         /// <summary>
         /// 请求是否成功
@@ -20,6 +20,10 @@ namespace TaiMingAI.Manager.Model
         /// 错误提示
         /// </summary>
         public string ErrMessage { get; set; }
+    }
+
+    public class ControllerResult<T> : BaseResult
+    {
         /// <summary>
         /// 返回数据
         /// </summary>
@@ -29,21 +33,8 @@ namespace TaiMingAI.Manager.Model
         /// </summary>
         public List<T> List { get; set; }
     }
-    public class ControllerResult
+    public class ControllerResult : BaseResult
     {
-        /// <summary>
-        /// 请求是否成功
-        /// </summary>
-        public bool IsSuccess { get; set; }
-        /// <summary>
-        /// 返回消息
-        /// </summary>
-        public string Message { get; set; }
-        /// <summary>
-        /// 错误提示
-        /// </summary>
-        public string ErrMessage { get; set; }
-
         public void DefaultSuccess(string msg = null)
         {
             IsSuccess = true;

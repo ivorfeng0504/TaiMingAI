@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using TaiMingAI.Manager.DAL;
 using TaiMingAI.Manager.Model;
 
@@ -10,27 +11,25 @@ namespace TaiMingAI.Manager.BLL
 {
     public class RoleBll
     {
+        RoleDal dal = RoleDal.CreatDal();
         /// <summary>
         /// 获取所有角色信息
         /// </summary>
         /// <returns>角色List</returns>
-        internal List<Role> GetRoleList()
+        internal List<RoleDto> GetRoleList()
         {
-            RoleDal roleDal = new RoleDal();
-            var list = roleDal.GetRoleList();
-            return list;
+            var list = dal.Query("xml.RoleSql.GetRoleList");
+            return Mapper.Map<List<Role>, List<RoleDto>>(list);
         }
 
         internal bool InsertRole(RoleDto dto)
         {
-            RoleDal roleDal = new RoleDal();
-            return roleDal.InsertRole(dto);
+            return dal.Insert("xml.RoleSql.InsertRole", Mapper.Map<RoleDto, Role>(dto)) > 0;
         }
 
         internal bool UpdateRole(RoleDto dto)
         {
-            RoleDal roleDal = new RoleDal();
-            return roleDal.UpdateRole(dto);
+            return dal.Update("xml.RoleSql.UpdateRole", Mapper.Map<RoleDto, Role>(dto)) > 0;
         }
 
         /// <summary>

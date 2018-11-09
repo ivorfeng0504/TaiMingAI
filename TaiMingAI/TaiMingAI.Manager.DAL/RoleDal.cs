@@ -8,41 +8,25 @@ using TaiMingAI.Manager.Model;
 
 namespace TaiMingAI.Manager.DAL
 {
-    public class RoleDal
+    public class RoleDal : BaseDal<Role>
     {
-        private DBContext dBContext = DBContext.InitDBContext;
-        public List<Role> GetRoleList()
+        #region 属性
+        private static RoleDal dal;
+        private RoleDal() : base(ManagerConfig.DbManager) { }
+        public static RoleDal CreatDal()
         {
-            var sql = dBContext.GetSql("RoleSql.GetRoleList");
-            var result = dBContext.ExecuteDataTable(ManagerConfig.DbManager, CommandType.Text, sql, null);
-            return DataConvertHelper.DataTableToList<Role>(result);
+            if (dal == null)
+            {
+                lock (obj)
+                {
+                    if (dal == null)
+                    {
+                        dal = new RoleDal();
+                    }
+                }
+            }
+            return dal;
         }
-
-        public bool InsertRole(RoleDto dto)
-        {
-            var sql = dBContext.GetSql("RoleSql.InsertRole");
-            SqlParameter[] sqlParameter = new SqlParameter[] {
-                new SqlParameter("@Name",dto.Name),
-                new SqlParameter("@Limits",dto.Limits),
-                new SqlParameter("@Description",dto.Description),
-                new SqlParameter("@IsUse",dto.IsUse),
-            };
-            var result = dBContext.ExecuteNonQuery(ManagerConfig.DbManager, CommandType.Text, sql, sqlParameter);
-            return result > 0;
-        }
-
-        public bool UpdateRole(RoleDto dto)
-        {
-            var sql = dBContext.GetSql("RoleSql.UpdateRole");
-            SqlParameter[] sqlParameter = new SqlParameter[] {
-                new SqlParameter("@Name",dto.Name),
-                new SqlParameter("@Limits",dto.Limits),
-                new SqlParameter("@Description",dto.Description),
-                new SqlParameter("@IsUse",dto.IsUse),
-                new SqlParameter("@Id",dto.Id)
-            };
-            var result = dBContext.ExecuteNonQuery(ManagerConfig.DbManager, CommandType.Text, sql, sqlParameter);
-            return result > 0;
-        }
+        #endregion
     }
 }

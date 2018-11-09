@@ -12,6 +12,7 @@ namespace TaiMingAI.Manager.BLL
 {
     public class NavbarBll
     {
+        NavbarDal dal = NavbarDal.CreatDal();
         /// <summary>
         /// 获取导航菜单列表
         /// </summary>
@@ -19,8 +20,7 @@ namespace TaiMingAI.Manager.BLL
         /// <returns></returns>
         internal List<NavbarDto> GetNavbarDtoList(bool isAll)
         {
-            NavbarDal navbarDal = new NavbarDal();
-            var list = navbarDal.GetNavbarList();
+            var list = dal.Query("xml.NavbarSql.GetNavbarList");
             if (list == null || list.Count == 0) return null;
             if (!isAll)
             {
@@ -29,16 +29,14 @@ namespace TaiMingAI.Manager.BLL
             return Mapper.Map<List<Navbar>, List<NavbarDto>>(list);
         }
 
-        internal bool InsertNavber(Navbar navBar)
+        internal bool InsertNavber(NavbarDto dto)
         {
-            NavbarDal navbarDal = new NavbarDal();
-            return navbarDal.InsertNavber(navBar);
+            return dal.Insert("xml.NavbarSql.InsertNavber", Mapper.Map<NavbarDto, Navbar>(dto)) > 0;
         }
 
-        internal bool UpdateNavber(Navbar navBar)
+        internal bool UpdateNavber(NavbarDto dto)
         {
-            NavbarDal navbarDal = new NavbarDal();
-            return navbarDal.UpdateNavber(navBar);
+            return dal.Update("xml.NavbarSql.UpdateNavber", Mapper.Map<NavbarDto, Navbar>(dto)) > 0;
         }
     }
 }

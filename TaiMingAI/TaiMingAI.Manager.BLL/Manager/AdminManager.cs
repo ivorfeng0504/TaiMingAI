@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using TaiMingAI.DataHelper;
 using TaiMingAI.Manager.Model;
 using TaiMingAI.Tools;
 

@@ -4,12 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TaiMingAI.Manager.BLL;
+using TaiMingAI.Manager.Filters;
 using TaiMingAI.Manager.Models;
 
 namespace TaiMingAI.Manager.Controllers
 {
     public class HomeController : BaseController
     {
+        [FormAuthorize(Roles = "1")]
         public ActionResult Index()
         {
             NavbarManager navbarManager = new NavbarManager();

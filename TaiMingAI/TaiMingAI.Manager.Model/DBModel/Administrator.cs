@@ -48,6 +48,14 @@ namespace TaiMingAI.Manager.Model
         /// -1:注销；0:未审核；1:审核通过；
         /// </summary>
         public int State { get; set; }
+        /// <summary>
+        /// 性别；1：男，0：女
+        /// </summary>
+        public int Sex { get; set; }
+        /// <summary>
+        /// 头像
+        /// </summary>
+        public string HeadImg { get; set; }
 
         public DateTime CreateTime { get; set; }
 

@@ -139,6 +139,10 @@ layui.use(['bodyTab', 'form', 'element', 'layer', 'jquery'], function () {
         window.sessionStorage.removeItem("menu");
         window.sessionStorage.removeItem("curmenu");
     }
+    $("#home_li").click(function () {
+        element.tabChange("bodyTab", "8888");
+        return false;
+    });
 })
 
 //打开新窗口

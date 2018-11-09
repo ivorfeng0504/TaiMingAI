@@ -21,7 +21,7 @@ namespace TaiMingAI.WebApi.Controllers
             try
             {
                 if (req == null || string.IsNullOrEmpty(req.Name) ||
-                    (!CheckHelper.CheckEmail(req.Email) && !CheckHelper.CheckMobileNo(req.Mobile)))
+                    (!CheckHelper.CheckEmail(req.Email) && !CheckHelper.CheckMobile(req.Mobile)))
                 {
                     return ErrorResponseMsg(false, "传入参数有误");
                 }

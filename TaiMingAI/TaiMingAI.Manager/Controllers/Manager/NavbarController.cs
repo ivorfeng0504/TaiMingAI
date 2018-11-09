@@ -8,7 +8,7 @@ using TaiMingAI.Manager.Model;
 
 namespace TaiMingAI.Manager.Controllers.Manager
 {
-    public class NavbarController : Controller
+    public class NavbarController : BaseController
     {
         public ActionResult Index()
         {
@@ -20,7 +20,7 @@ namespace TaiMingAI.Manager.Controllers.Manager
         }
 
         [HttpPost]
-        public JsonResult SubmitNavbar(Navbar navBar)
+        public JsonResult SubmitNavbar(NavbarDto navBar)
         {
             NavbarManager navbarManager = new NavbarManager();
             var result = navbarManager.SubmitNavber(navBar);

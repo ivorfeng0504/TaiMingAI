@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.IO;
 
 namespace TaiMingAI.Tools
 {
@@ -149,7 +150,8 @@ namespace TaiMingAI.Tools
                 PropertyInfo[] propertyInfos = t.GetProperties();
                 foreach (PropertyInfo prop in propertyInfos)
                 {
-                    if (prop.PropertyType.IsClass) {
+                    if (prop.PropertyType.IsClass)
+                    {
                     }
                     else
                     {
@@ -163,6 +165,37 @@ namespace TaiMingAI.Tools
 
                 LogHelper.ErrorLog("FromManyLevelJson反序列化异常", ex);
                 return default(T);
+            }
+        }
+
+        /// <summary>
+        /// 字符串格式化
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string StringToJson(string str)
+        {
+            if (string.IsNullOrWhiteSpace(str)) return str;
+
+            var serializer = new JsonSerializer();
+            TextReader tr = new StringReader(str);
+            JsonTextReader jtr = new JsonTextReader(tr);
+            object obj = serializer.Deserialize(jtr);
+            if (obj != null)
+            {
+                StringWriter textWriter = new StringWriter();
+                JsonTextWriter jsonWriter = new JsonTextWriter(textWriter)
+                {
+                    Formatting = Formatting.Indented,
+                    Indentation = 4,
+                    IndentChar = ' '
+                };
+                serializer.Serialize(jsonWriter, obj);
+                return textWriter.ToString();
+            }
+            else
+            {
+                return str;
             }
         }
     }

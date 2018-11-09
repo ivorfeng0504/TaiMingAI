@@ -12,6 +12,7 @@ using TaiMingAI.WebApi;
 using TaiMingAI.WebApi.BLL;
 using TaiMingAI.WebApi.Models;
 using TaiMingAI.DataHelper;
+using System.Threading;
 
 namespace ConsoleTest
 {
@@ -199,31 +200,55 @@ namespace ConsoleTest
             #endregion
 
             #region AutoMapper
-            TaiMingAI.Manager.Model.AutoMapper.Configuration.Configure();
-            RoleDto role = new RoleDto
-            {
-                Name = "ss",
-                Id = 9
-            };
-            var list = new List<RoleDto> { role };
-            Console.WriteLine("Role:{0}", JsonHelper.ToJson(list));
-            var dto = Mapper.Map<List<RoleDto>, List<Role>>(list);
-            var d = Mapper.Map<Role>(role);
+            //TaiMingAI.Manager.Model.AutoMapper.Configuration.Configure();
+            //RoleDto role = new RoleDto
+            //{
+            //    Name = "ss",
+            //    Id = 9
+            //};
+            //var list = new List<RoleDto> { role };
+            //Console.WriteLine("Role:{0}", JsonHelper.ToJson(list));
+            //var dto = Mapper.Map<List<RoleDto>, List<Role>>(list);
+            //var d = Mapper.Map<Role>(role);
 
-            AdministratorDto ad = new AdministratorDto
-            {
-                NickName = "dd",
-                Mobile = "12345"
-            };
-            var add = ad.MapTo<Administrator>();
-            Navbar navbar = new Navbar { Id = 22, href = "baidu" };
-            Dictionary<string, string> dictionary = new Dictionary<string, string>
-            {
-                { "Id","ParentId"},
-                { "href","icon"}
-            };
-            var navbarDat = navbar.MapTo<NavbarDto>(dictionary);
-            Console.WriteLine("add:{0}", JsonHelper.ToJson(d));
+            //AdministratorDto ad = new AdministratorDto
+            //{
+            //    NickName = "dd",
+            //    Mobile = "12345"
+            //};
+            //var add = ad.MapTo<Administrator>();
+            //Navbar navbar = new Navbar { Id = 22, href = "baidu" };
+            //Dictionary<string, string> dictionary = new Dictionary<string, string>
+            //{
+            //    { "Id","ParentId"},
+            //    { "href","icon"}
+            //};
+            //var navbarDat = navbar.MapTo<NavbarDto>(dictionary);
+            //Console.WriteLine("add:{0}", JsonHelper.ToJson(d));
+            #endregion
+
+            #region 线程 Thread
+            //Console.WriteLine("程序已启动...");
+            //Thread t1 = new Thread(Thread1);
+            //t1.Start();
+
+            //var t2 = new Thread(Therad2)
+            //{
+            //    IsBackground = true
+            //};
+            //t2.Start("阿三");
+            //Console.WriteLine("线程池已启动...");
+
+            //WaitCallback workItem = state => Console.WriteLine(state + "-当前线程ID:" + Thread.CurrentThread.ManagedThreadId);
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    ThreadPool.QueueUserWorkItem(workItem, "线程池【" + i + "】");
+            //}
+            #endregion
+
+            #region 依赖倒置、控制反转、依赖注入
+
+
             #endregion
             Console.ReadKey();
         }
@@ -232,6 +257,18 @@ namespace ConsoleTest
         {
             var flg = CacheHelper.DoRedisString.Incr(key + "Incr");
             LogHelper.InfoLogFormat("key:{0},访问次数：{1}", key, flg);
+        }
+
+        private static void Thread1()
+        {
+            Thread.Sleep(1500);
+            Console.WriteLine("主线程...");
+        }
+
+        private static void Therad2(object str)
+        {
+            Thread.Sleep(5000);
+            Console.WriteLine("后台线程:" + str);
         }
     }
     class PersonSection : ConfigurationSection

@@ -403,7 +403,7 @@ namespace TaiMingAI.DataHelper
                 return DateTime.MinValue;
             }
             DateTime result;
-            var isSuccess = DateTime.TryParse(ToString(obj), out result);
+            var isSuccess = DateTime.TryParse(ToString(obj), out result);                                        
             return isSuccess ? result : DateTime.MinValue;
         }
 

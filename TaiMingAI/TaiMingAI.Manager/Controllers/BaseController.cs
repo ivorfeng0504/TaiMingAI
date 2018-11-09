@@ -5,11 +5,12 @@ using System.Web;
 using System.Web.Mvc;
 using TaiMingAI.DataHelper;
 using TaiMingAI.Manager.Model;
+using TaiMingAI.Manager.Models;
 using TaiMingAI.Tools;
 
 namespace TaiMingAI.Manager.Controllers
 {
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
         /// <summary>
         /// 登录用户信息
@@ -21,13 +22,19 @@ namespace TaiMingAI.Manager.Controllers
         /// <param name="filterContext"></param>
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            //验证登录
-            var cookieInfo = Request.Cookies[ManagerConst.CkAdminInfo];
-            if (!CheckCookies(cookieInfo))
+            var principal = User as Principal;
+            if (principal == null)
             {
-                filterContext.Result = Redirect("/Login/Index?msg=登录超时,请重新登录！");
-                return;
+                if (filterContext.ActionDescriptor.ControllerDescriptor.ControllerName == "Home")
+                    filterContext.Result = new RedirectResult("~/Login/Index");
+                else
+                    filterContext.Result = new RedirectResult("~/Error/Timeout");
             }
+            else
+            {
+                UserInfo = principal.Account;
+            }
+            base.OnActionExecuting(filterContext);
         }
 
         /// <summary>

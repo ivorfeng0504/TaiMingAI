@@ -19,7 +19,7 @@ namespace TaiMingAI.Manager.Model
         /// 密码（MD5 32位加密）
         /// </summary>
         public string Password { get; set; }
-        
+
         /// <summary>
         /// 角色Id
         /// </summary>
@@ -44,6 +44,16 @@ namespace TaiMingAI.Manager.Model
         /// 昵称
         /// </summary>
         public string NickName { get; set; }
+
+        /// <summary>
+        /// 性别；1：男，0：女
+        /// </summary>
+        public int Sex { get; set; }
+
+        /// <summary>
+        /// 头像
+        /// </summary>
+        public string HeadImg { get; set; }
 
         /// <summary>
         /// -1:注销；0:未审核；1:审核通过；

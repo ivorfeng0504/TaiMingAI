@@ -14,7 +14,7 @@ namespace TaiMingAI.WebApi
             config.EnableCors(new EnableCorsAttribute(TaiMingAi.WebApi.Model.WebApiConfig.CorsOrigins, TaiMingAi.WebApi.Model.WebApiConfig.CorsHeaders, TaiMingAi.WebApi.Model.WebApiConfig.CorsMethods));
             // Web API 路由
             config.MapHttpAttributeRoutes();
-           // config.Filters.Add(new SignCheckFilter());
+            config.Filters.Add(new SignCheckFilter());
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{Action}/{id}",

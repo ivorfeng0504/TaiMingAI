@@ -21,10 +21,8 @@ namespace TaiMingAI.Manager.BLL
             try
             {
                 RoleBll roleBll = new RoleBll();
-                List<Role> list = roleBll.GetRoleList();
-                var dtoList = DataConvertHelper.ListToList<Role, RoleDto>(list);
+                result.List = roleBll.GetRoleList();
                 result.IsSuccess = true;
-                result.List = dtoList;
                 result.Message = "获取数据成功";
             }
             catch (Exception ex)
@@ -85,7 +83,7 @@ namespace TaiMingAI.Manager.BLL
             try
             {
                 RoleBll roleBll = new RoleBll();
-                List<Role> list = roleBll.GetRoleList();
+                List<RoleDto> list = roleBll.GetRoleList();
                 list = list.FindAll(x => x.IsUse);
                 foreach (var item in list)
                 {

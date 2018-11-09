@@ -37,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebAPI", "WebAPI", "{35B66E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WindowsService", "WindowsService", "{C2DDD002-604A-485F-B9F7-FD9CCDF9C119}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaiMingAI.WindowsService.Job", "TaiMingAI.WindowsService.Job\TaiMingAI.WindowsService.Job.csproj", "{BFE668B8-6AAC-4EDF-B25C-478C5935867E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{22ADFCFF-FB25-4910-A093-A4E381D584DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22ADFCFF-FB25-4910-A093-A4E381D584DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22ADFCFF-FB25-4910-A093-A4E381D584DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFE668B8-6AAC-4EDF-B25C-478C5935867E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFE668B8-6AAC-4EDF-B25C-478C5935867E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFE668B8-6AAC-4EDF-B25C-478C5935867E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFE668B8-6AAC-4EDF-B25C-478C5935867E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,6 +121,7 @@ Global
 		{8316EA22-ACC7-4E5B-834E-0CF3E14FD665} = {CEF605BC-B2F6-4DE5-9392-A98895FC5597}
 		{42ACA76C-6B24-4342-B001-1BA02FD58856} = {CEF605BC-B2F6-4DE5-9392-A98895FC5597}
 		{22ADFCFF-FB25-4910-A093-A4E381D584DD} = {C2DDD002-604A-485F-B9F7-FD9CCDF9C119}
+		{BFE668B8-6AAC-4EDF-B25C-478C5935867E} = {C2DDD002-604A-485F-B9F7-FD9CCDF9C119}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7137E536-6C1C-4F44-B785-84FE6887A025}

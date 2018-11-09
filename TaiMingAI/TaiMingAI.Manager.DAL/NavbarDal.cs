@@ -8,52 +8,29 @@ using System.Threading.Tasks;
 using TaiMingAI.DataHelper;
 using TaiMingAI.DBTools;
 using TaiMingAI.Manager.Model;
+using Dapper;
 
 namespace TaiMingAI.Manager.DAL
 {
-    public class NavbarDal
+    public class NavbarDal : BaseDal<Navbar>
     {
-        private DBContext dBContext = DBContext.InitDBContext;
-        public List<Navbar> GetNavbarList()
+        #region 属性
+        private static NavbarDal dal;
+        private NavbarDal() : base(ManagerConfig.DbManager) { }
+        public static NavbarDal CreatDal()
         {
-            var sql = dBContext.GetSql("NavbarSql.GetNavbarList");
-            var result = dBContext.ExecuteDataTable(ManagerConfig.DbManager, CommandType.Text, sql, null);
-            return DataConvertHelper.DataTableToList<Navbar>(result);
+            if (dal == null)
+            {
+                lock (obj)
+                {
+                    if (dal == null)
+                    {
+                        dal = new NavbarDal();
+                    }
+                }
+            }
+            return dal;
         }
-
-        public bool InsertNavber(Navbar navBar)
-        {
-            var sql = dBContext.GetSql("NavbarSql.InsertNavber");
-            SqlParameter[] sqlPar = new SqlParameter[] {
-                new SqlParameter("@ParentId",navBar.ParentId),
-                new SqlParameter("@title",navBar.title),
-                new SqlParameter("@icon",navBar.icon),
-                new SqlParameter("@href",navBar.href),
-                new SqlParameter("@spread",navBar.spread),
-                new SqlParameter("@target",navBar.target),
-                new SqlParameter("@IsShow",navBar.IsShow),
-                new SqlParameter("@Sort",navBar.Sort)
-            };
-            var result = dBContext.ExecuteNonQuery(ManagerConfig.DbManager, CommandType.Text, sql, sqlPar);
-            return result > 0;
-        }
-
-        public bool UpdateNavber(Navbar navBar)
-        {
-            var sql = dBContext.GetSql("NavbarSql.UpdateNavber");
-            SqlParameter[] sqlPar = new SqlParameter[] {
-                new SqlParameter("@ParentId",navBar.ParentId),
-                new SqlParameter("@title",navBar.title),
-                new SqlParameter("@icon",navBar.icon),
-                new SqlParameter("@href",navBar.href),
-                new SqlParameter("@spread",navBar.spread),
-                new SqlParameter("@target",navBar.target),
-                new SqlParameter("@IsShow",navBar.IsShow),
-                new SqlParameter("@Sort",navBar.Sort),
-                new SqlParameter("@Id",navBar.Id)
-            };
-            var result = dBContext.ExecuteNonQuery(ManagerConfig.DbManager, CommandType.Text, sql, sqlPar);
-            return result > 0;
-        }
+        #endregion
     }
 }

@@ -114,7 +114,7 @@ namespace TaiMingAI.Manager.BLL
         #endregion
 
         #region 提交导航菜单数据
-        public ControllerResult SubmitNavber(Navbar navBar)
+        public ControllerResult SubmitNavber(NavbarDto navBar)
         {
             ControllerResult result = new ControllerResult();
             try

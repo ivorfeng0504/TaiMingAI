@@ -28,5 +28,16 @@ namespace TaiMingAI.Manager.Model
                 return string.IsNullOrEmpty(loginTimeout) ? 12 : Convert.ToInt32(loginTimeout);
             }
         }
+
+        /// <summary>
+        /// 图片路径
+        /// </summary>
+        public static string UploadImageUrl
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["UploadImageUrl"];
+            }
+        }
     }
 }
