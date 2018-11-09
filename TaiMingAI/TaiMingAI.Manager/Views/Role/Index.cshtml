@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_IframeLayout.cshtml";
+}
+<input type="hidden" id="zTreeJson" value="@ViewBag.zTreeJson" />
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-header" style="padding-top:5px;padding-bottom:5px;">
+                    <button class="layui-btn" id="role_add_btn">
+                        <i class="layui-icon layui-icon-add-circle-fine"></i>添加角色
+                    </button>
+                </div>
+                <div class="layui-card-body">
+                    <table id="role_list" lay-filter="role_table"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="role_edit_page" style="display:none;">
+    <form class="layui-form" lay-filter="role_edit_form" style="margin:10px 10px 0 0;">
+        <input type="text" name="Id" class="layui-hide" />
+        <input type="text" name="Limits" class="layui-hide" />
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色名称</label>
+            <div class="layui-input-inline">
+                <input type="text" name="Name" required lay-verify="required" placeholder="请输入角色名称" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">权限范围</label>
+            <div class="layui-input-inline">
+                <ul id="treeLimits" class="ztree"></ul>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-block">
+                <input type="checkbox" name="IsUse" lay-skin="switch" lay-text="启用|禁用" checked>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">角色描述</label>
+            <div class="layui-input-block">
+                <textarea name="Description" placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit lay-filter="role_submit_btn">立即提交</button>
+                <button id="role_edit_form_reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div id="look_navbar_page" style="display:none;padding:15px;">
+    <ul id="look_navbar_zTree" class="ztree"></ul>
+</div>
+
+<script type="text/html" id="role_list_toolbar">
+    <a class="layui-btn layui-btn-sm" lay-event="look">
+        <i class="layui-icon layui-icon-search"></i>查看权限
+    </a>
+    <a class="layui-btn layui-btn-sm" lay-event="edit">
+        <i class="layui-icon layui-icon-edit"></i>编辑
+    </a>
+    <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">
+        <i class="layui-icon layui-icon-delete"></i>删除
+    </a>
+</script>
+
+@section styles {
+    <link href="~/Content/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <script src="~/Content/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Content/zTree/js/jquery.ztree.core.js"></script>
+    <script src="~/Content/zTree/js/jquery.ztree.excheck.js"></script>
+    <script src="~/Content/Scripts/pageJs/role_index.js"></script>
+}

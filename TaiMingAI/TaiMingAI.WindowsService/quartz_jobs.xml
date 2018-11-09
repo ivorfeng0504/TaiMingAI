@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains job definitions in schema version 2.0 format -->
+<job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
+  <processing-directives>
+    <overwrite-existing-data>true</overwrite-existing-data>
+  </processing-directives>
+
+  <schedule>
+    <job>
+      <name>DemoJob</name>
+      <group>DemoGroup</group>
+      <description>Sample job for Quartz Server</description>
+      <job-type>TaiMingAI.WindowsService.Job.DemoJob, TaiMingAI.WindowsService.Job</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+    <trigger>
+      <cron>
+        <name>DemoJobTrigger</name>
+        <group>DemoGroupTrigger</group>
+        <description>Simple trigger to simply fire sample job</description>
+        <job-name>DemoJob</job-name>
+        <job-group>DemoGroup</job-group>
+        <cron-expression>0/10 * * * * ?</cron-expression>
+      </cron>
+    </trigger>
+  </schedule>
+</job-scheduling-data>

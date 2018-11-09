@@ -1,0 +1,108 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_IframeLayout.cshtml";
+}
+<input type="hidden" id="all_NavBarJson" value="@ViewBag.NavBarJson" />
+<input type="hidden" id="all_NavbarDic" value="@ViewBag.NavBarDic" />
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md4">
+            <div class="layui-card">
+                <div class="layui-card-header">导航视图</div>
+                <div class="layui-card-body">
+                    <ul class="layui-nav layui-nav-tree layui-bg-cyan layui-inline" lay-filter="navbar_list" style="width:75%;display:block;margin:0 auto;"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md8">
+            <div class="layui-card">
+                <div class="layui-card-header">编辑导航</div>
+                <div class="layui-card-body">
+                    <form class="layui-form" lay-filter="formNavbar">
+                        <input type="text" name="Id" class="layui-hide" />
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">ID</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="Id" readonly placeholder="新增导航" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">父级导航</label>
+                            <div class="layui-input-inline">
+                                <select name="ParentId" lay-verify="required"></select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">标题</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">链接</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="href" placeholder="请输入链接,可为空" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">图标</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="icon" placeholder="请选择图标,可为空" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">
+                                <a class="layui-btn layui-btn-primary layui-btn-sm" href="https://www.layui.com/doc/element/icon.html#table" target="_blank">
+                                    <i class="layui-icon">&#xe615;</i>查看可用图标
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">展示样式</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="spread" lay-skin="switch" lay-text="展开|闭合" checked>
+                                <input type="checkbox" name="IsShow" lay-skin="switch" lay-text="显示|隐藏" checked>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">新页面打开</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="_target" lay-skin="switch" lay-text="是|否">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">排序值</label>
+                            <div class="layui-input-inline">
+                                <input type="number" name="Sort" value="0" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button class="layui-btn" lay-submit lay-filter="btnSubmit">立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="temp_navbar_a_icon">
+    <a href="javascript:;" data-json='{{d.json}}'>
+        <i class="layui-icon {{d.icon}}"></i>
+        <cite>{{d.title}}</cite>
+    </a>
+</script>
+<script type="text/html" id="temp_navbar_a">
+    <a href="javascript:;" data-json='{{d.json}}'>
+        <cite>{{d.title}}</cite>
+    </a>
+</script>
+@section scripts {
+    <script src="~/Content/Scripts/pageJs/navber_index.js"></script>
+}
+
+
