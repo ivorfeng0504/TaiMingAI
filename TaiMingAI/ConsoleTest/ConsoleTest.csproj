@@ -62,8 +62,11 @@
     <Compile Include="model\Delegate.cs" />
     <Compile Include="model\DelegateAsyncInvoke.cs" />
     <Compile Include="model\Factory.cs" />
+    <Compile Include="model\OrderablePartitionerDemo.cs" />
+    <Compile Include="model\ParallelTest.cs" />
     <Compile Include="model\Proxy.cs" />
     <Compile Include="model\Strategy.cs" />
+    <Compile Include="model\test.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

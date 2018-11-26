@@ -250,6 +250,15 @@ namespace ConsoleTest
 
 
             #endregion
+
+            #region Parallel
+            Test t = new Test();
+            t.Parallel_For();
+            //ParallelTest parallelTest = new ParallelTest();
+            //parallelTest.Parallel_Invoke();
+            //parallelTest.Parallel_For();
+            //parallelTest.Parallel_ForEach();
+            #endregion
             Console.ReadKey();
         }
 
